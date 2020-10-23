@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: VendorPage
+  },
+  {
+    path: 'vendor-register',
+    loadChildren: () => import('../vendor-register/vendor-register.module').then( m => m.VendorRegisterPageModule)
   }
 ];
 

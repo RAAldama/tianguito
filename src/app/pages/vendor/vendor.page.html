@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>vendor</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+
+  <div class="title-container">
+    <h3>Si usted es parte de la red de comerciantes puede registrarse y subir sus productos y ofertas</h3>
+  </div>
+
+  <div class="form-container">
+    <form>
+      <ion-item>
+        <ion-label position="floating">Nombre del Usuario</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+      <br>
+      <p class="foot-form">
+        ¿Aún no es parte de nuestra Red? Regístrese <a (click)="onClick()">aquí</a>
+      </p>
+
+      <div class="ion-text-center" >
+        <ion-button size="large" class="btn">Acceder</ion-button>
+      </div>
+    </form>
+  </div>
 
 </ion-content>
