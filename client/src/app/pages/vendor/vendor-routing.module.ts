@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'vendor-register',
     loadChildren: () => import('../vendor-register/vendor-register.module').then( m => m.VendorRegisterPageModule)
-  }
+  },
+  {
+    path: 'vendor-menu',
+    loadChildren: () => import('../vendor-menu/vendor-menu.module').then( m => m.VendorMenuPageModule)
+  },
 ];
 
 @NgModule({

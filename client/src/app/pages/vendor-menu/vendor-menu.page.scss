@@ -1,0 +1,52 @@
+h1{
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.discount-card{
+    color: black;
+    border-radius: 10px;
+    width: 95%;
+    position: absolute;
+    left: 10px;
+    top: 120px;
+    box-shadow: -4px 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card-image{
+    background-image: linear-gradient(to right, white , #FB7B76);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 144px;;
+}
+
+h4{
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.discount-card img{
+    margin-left: 10px;
+}
+
+.card-text{
+    font-size: 14px;
+    line-height: 16px;
+    margin: 15px;
+}
+
+h2{
+    color: black;
+    font-weight: bold;
+}
+
+.form-container{
+    position: absolute;
+    top: 370px;
+    left: 15px;
+    right: 25px;
+}
