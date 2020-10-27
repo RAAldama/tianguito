@@ -19,6 +19,7 @@ export class VendorRegisterPage implements OnInit {
     uploadAmazonService.getMarkets().subscribe((res: any) => {
       this.markets = res.markets
     })
+    
 
   }
 
@@ -33,19 +34,19 @@ export class VendorRegisterPage implements OnInit {
     this.router.navigateByUrl('/tabs/tab4/vendor-menu');
   }
 
-  save(username, password, market, stand){
-    console.log({username, password, market, stand})
-    //this.uploadAmazonService.createUser({username, password, market, description});
+  createStand(market, stand){
+    console.log({market, stand})
+    this.uploadAmazonService.createStand({market, stand});
   }
 
   submitMarket(name){
+    this.uploadAmazonService.createMarket({name}).subscribe(ans => {console.log(ans)})
     this.createForm = false;
-    console.log({name})
   }
 
   updateMarket(oldName, newName){
+    this.uploadAmazonService.updateMarket(oldName, newName).subscribe(ans => {console.log(ans)})
     this.modifyForm = false;
-    console.log({oldName, newName})
   }
 
 }

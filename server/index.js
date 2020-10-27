@@ -40,6 +40,7 @@ app.get("/markets", (req, res) => {
 
 app.post("/markets", (req, res) => {
   const mysql = require("mysql");
+  console.log("reqrqrqr")
 
   const connection = mysql.createConnection({
     host: "tianguito.cyhw3fadblmi.us-east-1.rds.amazonaws.com",
@@ -51,8 +52,10 @@ app.post("/markets", (req, res) => {
 
   connection.connect();
 
-  connection.query('INSERT INTO markets VALUES('+req.body.name+')', (err, results, fields) => {
-    res.status(200)
+  console.log("Posteando "+req.body.name)
+
+  connection.query('INSERT INTO markets VALUES("'+req.body.name+'")', (err, results, fields) => {
+    res.status(200).json({names: results})
   })
 });
 
@@ -75,21 +78,21 @@ app.put("/markets", (req, res) => {
 });
 
 //DynamoDB (Para ver y crear usuarios)
-app.get("/user", (req, res) => {
+app.get("/stand", (req, res) => {
   const AWS = require("aws-sdk");
 
   AWS.config.update({
-    accessKeyId: "",
-    secretAccessKey: "",
+    accessKeyId: "AKIA4IRMJ7XTPHL2YMNN",
+    secretAccessKey: "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",
     region: "us-east-1",
   });
 
   const dynamodb = new AWS.DynamoDB();
 
   const params = {
-    TableName: "_TABLA",
+    TableName: "Puestos",
     Select: "SPECIFIC_ATTRIBUTES",
-    AttributesToGet: ["_DOCUMENTO"],
+    AttributesToGet: ["Puesto","Mercado"],
   };
 
   dynamodb
@@ -97,30 +100,30 @@ app.get("/user", (req, res) => {
     .promise()
     .then(({ Items }) => {
       return Items.map((item) => {
-        return { name: item.User.S };
+        return { name: item.Puesto.S, market: item.Mercado.S };
       });
     })
     .then((results) => {
       console.log(results);
-      res.status(200).json({ users: results });
+      res.status(200).json({ stands: results });
     });
 });
 
-app.post("/createUser", (req, res) => {
+app.post("/stand", (req, res) => {
   const AWS = require("aws-sdk");
 
   AWS.config.update({
-    accessKeyId: "",
-    secretAccessKey: "",
+    accessKeyId: "AKIA4IRMJ7XTPHL2YMNN",
+    secretAccessKey: "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",
     region: "us-east-1",
   });
 
   const dynamodb = new AWS.DynamoDB();
 
   const params = {
-    TableName: "_TABLA",
+    TableName: "Puestos",
     Select: "SPECIFIC_ATTRIBUTES",
-    AttributesToGet: ["_DOCUMENTO"],
+    AttributesToGet: ["Puesto","Mercado"],
   };
 
   dynamodb.putItem(params, function (err, data) {

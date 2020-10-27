@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadAmazonService } from '../../services/upload-amazon.service';
 
 @Component({
   selector: 'app-vendor-products',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vendor-products.page.scss'],
 })
 export class VendorProductsPage implements OnInit {
+  stands = []
+
 
   products: any[] = [
     {
@@ -25,7 +28,11 @@ export class VendorProductsPage implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private uploadAmazonService: UploadAmazonService) { 
+    uploadAmazonService.getStands().subscribe((res: any) => {
+      this.stands = res.stands
+    })
+  }
 
   ngOnInit() {
   }

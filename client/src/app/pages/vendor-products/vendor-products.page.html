@@ -2,10 +2,10 @@
   <h1>Tu tianguis</h1>
 
   <div class="content">
-    <div class="vendor-pots-container">
-      <h4>Puesto de Fruta de Don Miguel</h4>
+    <div class="vendor-pots-container" *ngFor="let stand of stands">
+      <h4>{{stand.name}}</h4>
       <p>
-        La fruta más fresca y deliciosa del lugar sólo la tiene Don Miguel.
+        En el mercado {{stand.market}}
       </p>
     </div>
 
