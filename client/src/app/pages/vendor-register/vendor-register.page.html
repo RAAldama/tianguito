@@ -66,8 +66,8 @@
       <ion-item>
         <ion-label>Mercado</ion-label>
         <ion-select name="market" #market>
-          <ion-select-option value="mercado1" *ngFor="let market of markets">
-            Mercado de Tepepan
+          <ion-select-option value={{market.name}} *ngFor="let market of markets">
+            {{market.name}}
           </ion-select-option>
         </ion-select>
       </ion-item>
