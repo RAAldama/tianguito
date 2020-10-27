@@ -9,12 +9,13 @@ import { UploadAmazonService } from '../../services/upload-amazon.service';
 })
 export class VendorRegisterPage implements OnInit {
 
-  //markets;
+  markets;
 
   constructor(private router: Router, private uploadAmazonService: UploadAmazonService) { 
-    //uploadAmazonService.getMarkets().subscribe((res: any) => {
-    //  this.markets = res.markets
-    //})
+    uploadAmazonService.getMarkets().subscribe((res: any) => {
+      this.markets = res.markets
+    })
+
   }
 
   ngOnInit() {

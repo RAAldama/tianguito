@@ -19,23 +19,59 @@ app.listen(5000, () => {
   console.log("Server is listenning on ${5000}! (http://localhost:${5000})");
 });
 
-//RDS (Para añadir mercados)
+//RDS (Para añadir mercados)  
 app.get("/markets", (req, res) => {
   const mysql = require("mysql");
 
   const connection = mysql.createConnection({
-    host: "",
-    user: "",
-    password: "",
-    port: "",
-    database: "",
+    host: "tianguito.cyhw3fadblmi.us-east-1.rds.amazonaws.com",
+    user: "admin",
+    password: "Admin6280",
+    port: "3306",
+    database: "TianguitoMarkets",
   });
 
   connection.connect();
 
-  connection.query("SELECT _element FROM _table", (err, results, fields) => {
-    res.status(200).json({ markets: results });
+  connection.query('SELECT * FROM markets', (err, results, fields) => {
+    res.status(200).json({ markets: results })
+  })
+});
+
+app.post("/markets", (req, res) => {
+  const mysql = require("mysql");
+
+  const connection = mysql.createConnection({
+    host: "tianguito.cyhw3fadblmi.us-east-1.rds.amazonaws.com",
+    user: "admin",
+    password: "Admin6280",
+    port: "3306",
+    database: "TianguitoMarkets",
   });
+
+  connection.connect();
+
+  connection.query('INSERT INTO markets VALUES('+req.body.name+')', (err, results, fields) => {
+    res.status(200)
+  })
+});
+
+app.put("/markets", (req, res) => {
+  const mysql = require("mysql");
+
+  const connection = mysql.createConnection({
+    host: "tianguito.cyhw3fadblmi.us-east-1.rds.amazonaws.com",
+    user: "admin",
+    password: "Admin6280",
+    port: "3306",
+    database: "TianguitoMarkets",
+  });
+
+  connection.connect();
+
+  connection.query('UPDATE markets SET name="'+req.body.newName+'" WHERE name="'+req.body.oldName+'"', (err, results, fields) => {
+    res.status(200)
+  })
 });
 
 //DynamoDB (Para ver y crear usuarios)

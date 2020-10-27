@@ -14,6 +14,14 @@ export class UploadAmazonService {
     return this.http.get(`${this.url}/markets`);
   }
 
+  createMarket(name:string){
+    return this.http.post(`${this.url}/markets`, {name:name});
+  }
+
+  updateMarket(oldName:string, newName:string){
+    return this.http.put(`${this.url}/markets`, {oldName:oldName,newName:newName});
+  }
+
   getUser(){
     return this.http.get(`${this.url}/user`);
   }
