@@ -32,3 +32,16 @@ ion-item{
     width: 90%;
     margin-left: 20px;
 }
+
+
+.createForm, .modifyForm{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.delete{
+    float: right;
+    width: 30px;
+    height: 30px;
+}

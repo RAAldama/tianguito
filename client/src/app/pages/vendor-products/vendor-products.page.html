@@ -1,0 +1,27 @@
+<ion-content color="primary">
+  <h1>Tu tianguis</h1>
+
+  <div class="content">
+    <div class="vendor-pots-container">
+      <h4>Puesto de Fruta de Don Miguel</h4>
+      <p>
+        La fruta más fresca y deliciosa del lugar sólo la tiene Don Miguel.
+      </p>
+    </div>
+
+    <div class="product-card" *ngFor="let product of products">
+      <h3>{{product.name}}</h3>
+      <p>
+        {{product.description}}
+      </p>
+      <p class="price">$ {{product.price}} MXN</p>
+
+      <ion-button class="btn" color="primary">
+        Eliminar
+      </ion-button>
+
+      <hr>
+    </div>
+  </div>
+
+</ion-content>

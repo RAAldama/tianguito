@@ -1,3 +1,4 @@
+import { createTokenForExternalReference } from '@angular/compiler/src/identifiers';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UploadAmazonService } from '../../services/upload-amazon.service';
@@ -10,6 +11,9 @@ import { UploadAmazonService } from '../../services/upload-amazon.service';
 export class VendorRegisterPage implements OnInit {
 
   markets;
+  //markets;
+  createForm = false;
+  modifyForm = false;
 
   constructor(private router: Router, private uploadAmazonService: UploadAmazonService) { 
     uploadAmazonService.getMarkets().subscribe((res: any) => {
@@ -29,9 +33,19 @@ export class VendorRegisterPage implements OnInit {
     this.router.navigateByUrl('/tabs/tab4/vendor-menu');
   }
 
-  save(username, password, market, description){
-    console.log({username, password, market, description})
+  save(username, password, market, stand){
+    console.log({username, password, market, stand})
     //this.uploadAmazonService.createUser({username, password, market, description});
+  }
+
+  submitMarket(name){
+    this.createForm = false;
+    console.log({name})
+  }
+
+  updateMarket(oldName, newName){
+    this.modifyForm = false;
+    console.log({oldName, newName})
   }
 
 }

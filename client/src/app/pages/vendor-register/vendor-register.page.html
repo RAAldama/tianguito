@@ -2,9 +2,54 @@
   <div class="title-container">
     <h3>Forme parte de la red de Tianguito</h3>
   </div>
+  
+  <div class="create-market" class="createForm" *ngIf="createForm">
+    <ion-icon name="close-outline" class="delete" (click)="createForm=false"></ion-icon>
+    <div class="form-container">
+      <form (ngSubmit)="submitMarket(market.value)">
+        <ion-item>
+          <ion-label position="floating">Nuevo mercado a unirse a Tianguito</ion-label>
+          <ion-input required name="market" #market></ion-input>
+        </ion-item>
+
+        <br>
+
+        <div class="ion-text-center">
+          <ion-button type="submit" size="large" class="btn">
+            Crear mercado
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="create-market" class="modifyForm" *ngIf="modifyForm">
+    <ion-icon name="close-outline" class="delete" (click)="modifyForm=false"></ion-icon>
+    <div class="form-container">
+      <form (ngSubmit)="updateMarket(oldName.value, newName.value)">
+        <ion-item>
+          <ion-label position="floating">Antiguo nombre del mercado</ion-label>
+          <ion-input required name="oldName" #oldName></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="floating">Nuevo nombre del mercado</ion-label>
+          <ion-input required name="newName" #newName></ion-input>
+        </ion-item>
+
+        <br>
+
+        <div class="ion-text-center">
+          <ion-button type="submit" size="large" class="btn">
+            Modificar mercado
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <div class="form-container">
-    <form (ngSubmit)="save(username.value, password.value, market.value, description.value)">
+    <form (ngSubmit)="save(username.value, password.value, market.value, stand.value)">
 
       <ion-item>
         <ion-label position="floating">Nuevo nombre del Usuario</ion-label>
@@ -32,18 +77,23 @@
 
       <br />
 
+      <div class="ion-text-center">
+        <ion-button color="tertiary" (click)="createForm=true">
+          Dar de alta mercado
+        </ion-button>
+
+        <ion-button color="tertiary" (click)="modifyForm=true">
+          Modificar mercado
+        </ion-button>
+      </div>
+
       <ion-item>
-        <ion-label position="floating">Description del Puesto</ion-label>
-        <ion-textarea name="description" #description></ion-textarea>
+        <ion-label position="floating">Nombre del Puesto</ion-label>
+        <ion-textarea name="stand" #stand></ion-textarea>
       </ion-item>
 
       <br />
 
-      <div class="ion-text-center">
-        <ion-button expand="block" class="btn-lg" color="tertiary">
-          Ubicación del Puesto
-        </ion-button>
-      </div>
 
       <p class="foot-form">
         ¿Ya eres parte de Tianguito? 
@@ -56,7 +106,7 @@
           Acceder
         </ion-button>
       </div>
-      
+
     </form>
   </div>
 </ion-content>
