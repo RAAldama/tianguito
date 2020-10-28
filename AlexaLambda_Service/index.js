@@ -158,8 +158,11 @@ async function getData(){
         for(var i=1;i<lineas.length;i++){
               var currentline = lineas[i].split(",");
               for(var j=0;j<headers.length;j++){
+                  if(currentline[j]!=null && currentline[j]!=" "){
                   resultado += headers[j] + ": " + currentline[j] +".  ";
-              }
+                  }
+                      
+                  }
          }
 
         return resultado;
