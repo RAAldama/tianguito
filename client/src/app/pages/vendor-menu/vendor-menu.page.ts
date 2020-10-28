@@ -15,7 +15,6 @@ export class VendorMenuPage implements OnInit {
   }
 
   createProduct(name, description, price){
-    console.log({name, description, price});
     this.uploadAmazonService.createProduct({name, description, price}).subscribe(ans => {console.log(ans)});
   }
 

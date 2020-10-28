@@ -153,6 +153,12 @@ app.post("/product", (req, res) => {
   const file = generateCSVFile(req.body);
   const bufferObject = new Buffer.from(file);
 
+  AWS.config.update({
+    accessKeyId: "AKIARDKAXXUNHMX3NSEA",
+    secretAccessKey: "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",
+    region: "us-east-1",
+  });
+
   var params = {
     Bucket: "tianguitobucket",
     Key: "productos.csv",
@@ -161,6 +167,12 @@ app.post("/product", (req, res) => {
   };
 
   s3.upload(params, function (err, data) {
+    if(err){
+      console.log(err)
+      return res.status(401).json({
+        error: err
+      })
+    }
     res.status(200).json({
       url: data.Location
     });
