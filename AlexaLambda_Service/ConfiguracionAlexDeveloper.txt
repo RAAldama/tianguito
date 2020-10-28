@@ -1,3 +1,9 @@
+puesto de tianguito
+
+Dime los productos de mi stand
+
+di me los productos de mi stand
+
 JSON////////
 
 {
