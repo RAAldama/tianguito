@@ -52,10 +52,10 @@ app.post("/markets", (req, res) => {
 
   connection.connect();
 
-  console.log("Posteando " + req.body.name)
+  console.log("Posteando "+req.body.name)
 
-  connection.query('INSERT INTO markets VALUES("' + req.body.name + '")', (err, results, fields) => {
-    res.status(200).json({ names: results })
+  connection.query('INSERT INTO markets VALUES("'+req.body.name+'")', (err, results, fields) => {
+    res.status(200).json({names: results})
   })
 });
 
@@ -72,7 +72,7 @@ app.put("/markets", (req, res) => {
 
   connection.connect();
 
-  connection.query('UPDATE markets SET name="' + req.body.newName + '" WHERE name="' + req.body.oldName + '"', (err, results, fields) => {
+  connection.query('UPDATE markets SET name="'+req.body.newName+'" WHERE name="'+req.body.oldName+'"', (err, results, fields) => {
     res.status(200)
   })
 });
@@ -92,7 +92,7 @@ app.get("/stand", (req, res) => {
   const params = {
     TableName: "Puestos",
     Select: "SPECIFIC_ATTRIBUTES",
-    AttributesToGet: ["Puesto", "Mercado"],
+    AttributesToGet: ["Puesto","Mercado"],
   };
 
   dynamodb
@@ -122,48 +122,47 @@ app.post("/stand", (req, res) => {
   const params = {
     TableName: 'Puestos',
     Item: {
-      'Puesto': { S: req.body.stand },
-      'Mercado': { S: req.body.market }
+      'Puesto' : {S: req.body.stand},
+      'Mercado' : {S: req.body.market}
     }
   };
 
-  console.log(req.body.stand + " " + req.body.market)
+  console.log( req.body.stand+" "+ req.body.market)
 
   dynamodb.putItem(params, function (err, data) {
     res.status(200).json({
-      data: data
+      data:data
     });
   });
 });
 
+//Convertir a CSV
+const generateCSVFile = (data) => {
+  const json2csv = require("json2csv");
+  const fields = Object.keys(data);
+  const csv = json2csv.parse([data], { fields });
+
+  return csv;
+};
+
 //S3 (Para subir Productos como CSV)
 app.post("/product", (req, res) => {
   const AWS = require("aws-sdk");
+
   const s3 = new AWS.S3();
-  let productos = {products: [{name: "lol", description: "kek", price: 4}]}
-
-  s3.getObject(
-    { Bucket: "tianguitobucket", Key: "productos.json" },
-    function (error, data) {
-      if (error)  
-        return error
-
-      //productos = data.Body
-    }
-  )
-
-  productos.products.push({name: req.body.name, description: req.body.description, price: req.body.price})
-  console.log(productos)
+  const file = generateCSVFile(req.body);
+  const bufferObject = new Buffer.from(file);
 
   var params = {
     Bucket: "tianguitobucket",
-    Key: "productos.json",
-    Body: productos,
+    Key: "productos.csv",
+    Body: bufferObject,
     ACL: "public-read",
   };
 
   s3.upload(params, function (err, data) {
     res.status(200).json({
+      url: data.Location
     });
   });
 });
@@ -171,23 +170,20 @@ app.post("/product", (req, res) => {
 
 app.get("/product", (req, res) => {
   const AWS = require("aws-sdk");
+
   const s3 = new AWS.S3();
-  let productosFile;
-
-  s3.getObject(
-    { Bucket: "tianguitobucket", Key: "productos.json" },
-    function (error, data) {
-      productosFile = data
-    }
-  )
-
   const file = generateCSVFile(req.body);
   const bufferObject = new Buffer.from(file);
 
   var params = {
     Bucket: "tianguitobucket",
-    Key: "productos.json",
+    Key: "productos.csv",
     Body: bufferObject,
     ACL: "public-read",
   };
+
+  s3.upload(params, function (err, data) {
+    res.status(200).json({
+    });
+  });
 });

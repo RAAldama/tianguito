@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UploadAmazonService {
 
-  url: string = 'http://localhost:5000';
+  url: string = 'https://localhost:5000';
 
   constructor(private http: HttpClient) { }
 
