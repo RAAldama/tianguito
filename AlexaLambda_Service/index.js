@@ -143,7 +143,7 @@ async function getData(){
 
      // Setting the bucket and files parameters
     const params = {
-        Bucket: 'tiangobocket',
+        Bucket: 'tianguitobucket',
         Key: 'productos.csv',
     };
     try {
