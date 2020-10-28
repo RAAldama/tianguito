@@ -14,9 +14,9 @@ export class VendorMenuPage implements OnInit {
   ngOnInit() {
   }
 
-  save(productName, description, price){
-    console.log({productName, description, price});
-    //this.uploadAmazonService.createProduct({productName, description, price});
+  createProduct(name, description, price){
+    console.log({name, description, price});
+    this.uploadAmazonService.createProduct({name, description, price}).subscribe(ans => {console.log(ans)});
   }
 
   productsList(){
