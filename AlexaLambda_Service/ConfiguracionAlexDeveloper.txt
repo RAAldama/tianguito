@@ -1,0 +1,50 @@
+JSON////////
+
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "puesto de tianguito",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "TestIntent",
+                    "slots": [],
+                    "samples": [
+                        "dime los produtos de mi stand",
+                        "Dime los produtos de mi stand"
+                    ]
+                },
+                {
+                    "name": "TestIntentB",
+                    "slots": [],
+                    "samples": [
+                        "cuantos pedidos tengo",
+                        "Cuantos pedidos tengo"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
+
+//////////////ARN Lambda
+
+arn:aws:lambda:us-east-2:624983406111:function:serverlessrepo-alexa-skil-alexaskillskitnodejsfact-1SN325S613024
+
+
