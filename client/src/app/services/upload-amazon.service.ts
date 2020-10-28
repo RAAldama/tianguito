@@ -27,6 +27,7 @@ export class UploadAmazonService {
   }
 
   createStand(data: any){
+    console.log("La wea")
     return this.http.post(`${this.url}/stand`, data);
   }
 

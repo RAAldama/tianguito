@@ -36,7 +36,7 @@ export class VendorRegisterPage implements OnInit {
 
   createStand(market, stand){
     console.log({market, stand})
-    this.uploadAmazonService.createStand({market, stand});
+    this.uploadAmazonService.createStand({market, stand}).subscribe(ans => {console.log(ans)});
   }
 
   submitMarket(name){
