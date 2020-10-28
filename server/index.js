@@ -148,6 +148,7 @@ const generateCSVFile = (data) => {
 //S3 (Para subir Productos como CSV)
 app.post("/product", (req, res) => {
   const AWS = require("aws-sdk");
+  const fs = require("fs"); 
 
   const s3 = new AWS.S3();
   const file = generateCSVFile(req.body);
@@ -165,6 +166,17 @@ app.post("/product", (req, res) => {
     Body: bufferObject,
     ACL: "public-read",
   };
+
+  var paramsGet = {
+    Bucket: "tianguitobucket",
+    Key: "productos.csv",
+  }
+
+  let productos = s3.getObject(paramsGet, function (err,data) {
+    return data
+  })
+
+  console.log(productos)
 
   s3.upload(params, function (err, data) {
     if(err){

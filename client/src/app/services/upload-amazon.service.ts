@@ -11,7 +11,7 @@ export class UploadAmazonService {
   constructor(private http: HttpClient) { }
 
   getMarkets(){
-    return this.http.get(`${this.url}/markets`);
+    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/rds`);
   }
 
   createMarket(data:any){
@@ -23,7 +23,7 @@ export class UploadAmazonService {
   }
 
   getStands(){
-    return this.http.get(`${this.url}/stand`);
+    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/dynamodb`);
   }
 
   createStand(data: any){
