@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +7,22 @@ import { HttpClient } from '@angular/common/http';
 export class UploadAmazonService {
 
   url: string = 'http://localhost:5000';
+  headerDict = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  }
+  
+  requestOptions = {                                                                                                                                                                                 
+    headers: new HttpHeaders(this.headerDict), 
+  };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
   getMarkets(){
-    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/rds`);
+    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/rds`, this.requestOptions);
   }
 
   createMarket(data:any){
@@ -23,7 +34,7 @@ export class UploadAmazonService {
   }
 
   getStands(){
-    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/dynamodb`);
+    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/dynamodb`, this.requestOptions);
   }
 
   createStand(data: any){

@@ -30,7 +30,8 @@ export class VendorProductsPage implements OnInit {
 
   constructor(private uploadAmazonService: UploadAmazonService) { 
     uploadAmazonService.getStands().subscribe((res: any) => {
-      this.stands = res.stands
+      console.log(res)
+      this.stands = res.body.stands
     })
   }
 

@@ -17,7 +17,8 @@ export class VendorRegisterPage implements OnInit {
 
   constructor(private router: Router, private uploadAmazonService: UploadAmazonService) { 
     uploadAmazonService.getMarkets().subscribe((res: any) => {
-      this.markets = res.markets
+      console.log(res.markets)
+      this.markets = res.body.markets
     })
     
 
