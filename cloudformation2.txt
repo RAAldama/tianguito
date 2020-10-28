@@ -1,0 +1,32 @@
+Type: AWS::RDS::DBInstance
+Properties: 
+  DBInstanceClass: db.m1.micro
+  DBName: TianguitoMarkets
+
+Type: AWS::DynamoDB::Table
+Properties: 
+  KeySchema: 
+    - Puesto
+  TableName: Puestos
+  Tags: 
+    - Tag
+
+Type: AWS::Lambda::Function
+Properties: 
+  Code: 
+    ''
+  Handler: ''
+  Role: String
+  Runtime: nodejs12.x
+  Tags: 
+    - Tag
+
+Type: AWS::Lambda::Function
+Properties: 
+  Code: 
+    ''
+  Handler: ''
+  Role: String
+  Runtime: nodejs12.x
+  Tags: 
+    - Tag
