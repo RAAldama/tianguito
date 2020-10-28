@@ -199,6 +199,12 @@ app.get("/product", (req, res) => {
   const file = generateCSVFile(req.body);
   const bufferObject = new Buffer.from(file);
 
+  AWS.config.update({
+    accessKeyId: "AKIARDKAXXUNHMX3NSEA",
+    secretAccessKey: "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",
+    region: "us-east-1",
+  });
+
   var params = {
     Bucket: "tianguitobucket",
     Key: "productos.csv",
