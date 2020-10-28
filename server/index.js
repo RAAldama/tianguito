@@ -104,7 +104,6 @@ app.get("/stand", (req, res) => {
       });
     })
     .then((results) => {
-      console.log(results);
       res.status(200).json({ stands: results });
     });
 });
@@ -121,14 +120,18 @@ app.post("/stand", (req, res) => {
   const dynamodb = new AWS.DynamoDB();
 
   const params = {
-    TableName: "Puestos",
-    Select: "SPECIFIC_ATTRIBUTES",
-    AttributesToGet: ["Puesto","Mercado"],
+    TableName: 'Puestos',
+    Item: {
+      'Puesto' : {S: req.body.stand},
+      'Mercado' : {S: req.body.market}
+    }
   };
+
+  console.log( req.body.stand+" "+ req.body.market)
 
   dynamodb.putItem(params, function (err, data) {
     res.status(200).json({
-      url: data.Location,
+      data:data
     });
   });
 });
