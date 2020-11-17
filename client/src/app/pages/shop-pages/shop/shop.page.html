@@ -1,0 +1,33 @@
+<ion-content color="primary">
+  <h1>Tu tianguis</h1>
+
+  <div class="content">
+    <div class="tianguis-card">
+      <img src="../../../assets/img/stock_market_preview.png" alt="">
+      <div class="card-content">
+        <p>
+          <b>Tianguis de Tepepan</b>
+        </p>
+        <p class="address">
+          San Buenaventura, San Andrés Totoltepec, Tlalpan
+        </p>
+      </div>
+    </div>
+
+    <h2>Puestos disponibles</h2>
+
+    <div class="stand-card" *ngFor="let stand of stands" [routerLink]="'stand/'+stand.id">
+      <h3>{{stand.name}}</h3>
+      <p>
+        {{stand.description}}
+      </p>
+      <hr>
+    </div>
+
+    <ion-button class="cart-btn" color="primary">
+      <ion-icon name="cart"></ion-icon>
+      Carrito
+    </ion-button>
+  </div>
+
+</ion-content>

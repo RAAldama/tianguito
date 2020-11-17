@@ -17,11 +17,11 @@ const routes: Routes = [
       },
       {
         path: 'tab3',
-        loadChildren: () => import('../pages/shop/shop.module').then(m => m.ShopPageModule)
+        loadChildren: () => import('../pages/shop-pages/shop/shop.module').then(m => m.ShopPageModule)
       },
       {
         path: 'tab4',
-        loadChildren: () => import('../pages/vendor/vendor.module').then(m => m.VendorPageModule)
+        loadChildren: () => import('../pages/vendor-pages/vendor/vendor.module').then(m => m.VendorPageModule)
       },
       {
         path: '',

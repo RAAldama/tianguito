@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadAmazonService } from '../../services/upload-amazon.service';
+import { UploadAmazonService } from '../../../services/upload-amazon.service';
 import { Router } from '@angular/router';
 
 @Component({

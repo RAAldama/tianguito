@@ -1,7 +1,7 @@
 import { createTokenForExternalReference } from '@angular/compiler/src/identifiers';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UploadAmazonService } from '../../services/upload-amazon.service';
+import { UploadAmazonService } from '../../../services/upload-amazon.service';
 
 @Component({
   selector: 'app-vendor-register',

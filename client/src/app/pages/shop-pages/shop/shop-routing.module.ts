@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: ShopPage,
+  },
+  {
+    path: 'stand/:id',
+    loadChildren: () => import('../stand/stand.module').then( m => m.StandPageModule)
   }
 ];
 

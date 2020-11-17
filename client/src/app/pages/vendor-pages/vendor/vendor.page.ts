@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UploadAmazonService } from '../../services/upload-amazon.service';
+import { UploadAmazonService } from '../../../services/upload-amazon.service';
 
 @Component({
   selector: 'app-vendor',

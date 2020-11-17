@@ -1,0 +1,49 @@
+.content{
+    color: black;
+}
+
+h1{
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+h2{
+    margin-left: 18px;
+    padding-top: 40px;
+    font-weight: bold;
+}
+
+p{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.description{
+    color: gray;
+    font-size: 14px;
+}
+
+.price{
+    color: #CC0A3B;
+    font-weight: bold;
+}
+
+label{
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+input{
+    margin-left: 20px;
+    margin-top: 5px;
+    line-height: 20px;
+    height: 40px;
+    width: 60px;
+    border-width: 0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    -webkit-box-shadow: -10px 10px 8px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: -10px 10px 8px -7px rgba(0,0,0,0.75);
+    box-shadow: -10px 10px 8px -7px rgba(0,0,0,0.75);
+}
