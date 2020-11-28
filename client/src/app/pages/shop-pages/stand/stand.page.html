@@ -3,6 +3,30 @@
 
   <div class="content">
 
+    <div class="product-page" *ngIf="productPage">
+      <h2>{{products[0].name}}</h2>
+
+      <p class="description">
+        {{products[0].stand}}
+      </p>
+      <p>
+        {{products[0].description}}
+      </p>
+      <p class="price">
+        ${{products[0].price}} MXN
+      </p>
+
+      <label for="cuantity">Cantidad</label>
+      <br>
+      <input type="number" id="cuantity" placeholder="0">
+
+      <div class="ion-text-center">
+        <ion-button type="submit" size="large" class="btn">
+          Comprar
+        </ion-button>
+      </div>
+    </div>
+
     <div class="stand-card">
       <h4>Puesto de Fruta de Don Miguel</h4>
       <p>
@@ -10,7 +34,7 @@
       </p>
     </div>
 
-    <div class="product-card" *ngFor="let product of products" [routerLink]="'product/'+product.id">
+    <div class="product-card" *ngFor="let product of products" (click)="productPageAppear()">
       <h3>{{product.name}}</h3>
       <p>
         {{product.description}}

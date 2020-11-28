@@ -1,0 +1,24 @@
+<ion-content color="primary">
+
+  <div class="wrapper">
+
+    <h1 class="tittle">TianguitoApp</h1>
+    <h2>Hora de formar de la red de tianguis más confiable</h2>
+  
+    <form (ngSubmit)="submitUser(user.value, email.value)">
+      <ion-item color="primary">
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input required name="user" #user></ion-input>
+      </ion-item>
+
+      <ion-item color="primary">
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" required name="email" #email></ion-input>
+      </ion-item>
+    
+      <ion-button class="btn-register" expand="block" color="tertiary" type=submit>Registrarse</ion-button>
+    </form>
+
+  </div>
+
+</ion-content>
