@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
     this.userService.loginUser({email,password}).subscribe((res:any) => {
       if(res.logged){
         console.log(res)
-        //this.router.navigateByUrl('/tabs/tab1');
+        this.router.navigateByUrl('/tabs/tab1');
       }else{
         this.confirmation = "Error al iniciar sesión, revisar datos de inicio de sesión"
         console.log(this.confirmation)

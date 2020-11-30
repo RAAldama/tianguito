@@ -31,15 +31,30 @@ export class StandPage implements OnInit {
     }
   ]
 
+  price = this.products[0].price;
+
   productPage: boolean = false;
 
-  constructor() { }
+  cartPage: boolean = false;
+
+  standPage: boolean = true;
+
+  constructor() { 
+  }
 
   ngOnInit() {
   }
 
   productPageAppear(){
     this.productPage = !this.productPage;
+  }
+
+  productQuantity(value){
+    if(  value === 0 || value === undefined ){
+      this.price = this.products[0].price;
+    }
+
+    this.price = this.products[0].price * value;
   }
 
 }

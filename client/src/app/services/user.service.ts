@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,17 @@ export class UserService {
   }
 
   loginUser(data:any){
-    return this.http.post(`${this.url}/login`, data)
+    return this.http.post(`${this.url}/login`, data).pipe( tap( (ans: any) => {
+      localStorage.setItem('token', ans.result.accessToken.jwtToken);
+    }))
+  }
+
+  validateToken(): boolean{
+    if(!localStorage.getItem('token')){
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }
