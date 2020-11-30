@@ -335,6 +335,9 @@ Resources:
         -
           AttributeName: "Puesto"
           KeyType: "HASH"
+        -
+          AttributeName: Mercado
+          KeyType: "HASH"
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
         WriteCapacityUnits: "5"
