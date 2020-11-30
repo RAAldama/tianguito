@@ -526,3 +526,9 @@ Resources:
       FunctionName: !ImportValue 'RDS-FreeStorage-notification-lambda-name'
       Principal: "sns.amazonaws.com"
       SourceArn: !Ref RDSFreeStorageSNSTopic
+
+Outputs:
+  RDSFreeStorageSNSTopicArn:
+    Value: !Ref RDSFreeStorageSNSTopic
+    Export:
+      Name: RDS-FreeStorage-notification-lambda-name
