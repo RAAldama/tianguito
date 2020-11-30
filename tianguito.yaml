@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Description: "Levantar una VPC"
-Parameters:
 
 Resources:
   TianguitoVPC:
@@ -11,12 +10,10 @@ Resources:
       EnableDnsHostnames: "true"
       EnableDnsSupport: "true"
       Tags:
-        - Key: "Application"
-          Value:
-            Ref: "AWS::StackName"
-        - Key: "Name"
-          Value:
-            Ref: "TianguitoVPC"
+      - Key: "Application"
+        Value: Tianguito-stack
+      - Key: "Name"
+        Value: Tianguito
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
@@ -26,8 +23,8 @@ Resources:
       VpcId:
         Ref: TianguitoVPC
       Tags:
-        - Key: "Name"
-          Value: Tianguito-Pub-1
+      - Key: "Name"
+        Value: Tianguito-Pub-1
           
   PublicSubnet2:
     Type: AWS::EC2::Subnet
@@ -37,8 +34,8 @@ Resources:
       VpcId:
         Ref: TianguitoVPC
       Tags:
-        - Key: "Name"
-          Value: Tianguito-Pub-2
+      - Key: "Name"
+        Value: Tianguito-Pub-2
 
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
@@ -48,8 +45,8 @@ Resources:
       VpcId:
         Ref: TianguitoVPC
       Tags:
-        - Key: "Name"
-          Value: Tianguito-Priv-1
+      - Key: "Name"
+        Value: Tianguito-Priv-1
           
   PrivateSubnet2:
     Type: AWS::EC2::Subnet
@@ -59,15 +56,15 @@ Resources:
       VpcId:
         Ref: TianguitoVPC
       Tags:
-        - Key: "Name"
-          Value: Tianguito-Priv-2
+      - Key: "Name"
+        Value: Tianguito-Priv-2
   
   RoutingTable:
     Type: AWS::EC2::RouteTable
     Properties:
       Tags:
-        - Key: "Name"
-          Value: Tianguito_Route_Table
+      - Key: "Name"
+        Value: Tianguito_Route_Table
       VpcId:
         Ref: TianguitoVPC
 
@@ -75,52 +72,64 @@ Resources:
     Type: AWS::EC2::InternetGateway
     Properties: 
       Tags: 
-        - Key: "Name"
-          Value: Tianguito-Gateway
+      - Key: "Name"
+        Value: Tianguito-Gateway
   
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties: 
-      InternetGatewayId: !Ref TianguitoGateway
-      VpcId: !Ref TianguitoVPC
+      InternetGatewayId: 
+        Ref: TianguitoGateway
+      VpcId: 
+        Ref: TianguitoVPC
   
   AssociationPub1:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PublicSubnet1
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PublicSubnet1
   
   AssociationPub2:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PublicSubnet2
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PublicSubnet2
 
   AssociationPriv1:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PrivateSubnet1
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PrivateSubnet1
 
   AssociationPriv2:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PrivateSubnet2
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PrivateSubnet2
 
   TianguitoACL1:
     Type: AWS::EC2::NetworkAcl
     Properties:
       Tags: 
-        - Key: "Name"
-          Value: TianguitoACL1
-      VpcId: !Ref TianguitoVPC
+      - Key: "Name"
+        Value: TianguitoACL1
+      VpcId: 
+        Ref: TianguitoVPC
 
   ACLEntryHTTP:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 80
         To: 80
@@ -132,7 +141,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 443
         To: 443
@@ -144,7 +154,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 22
         To: 22
@@ -156,7 +167,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 3389
         To: 3389
@@ -168,7 +180,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 53
         To: 53
@@ -180,7 +193,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 53
         To: 53
@@ -191,42 +205,52 @@ Resources:
   ACLAssociation1:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PublicSubnet1
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PublicSubnet1
 
   ACLAssociation2:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PublicSubnet2
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PublicSubnet2
 
   ACLAssociation3:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PrivateSubnet1
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PrivateSubnet1
   
   ACLAssociation4:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PrivateSubnet2
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PrivateSubnet2
 
   TianguitoSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Tianguito security group 
       Tags: 
-        - Key: "Name"
-          Value: TianguitoSG
-      VpcId: !Ref TianguitoVPC
+      - Key: "Name"
+        Value: TianguitoSG
+      VpcId: 
+        Ref: TianguitoVPC
 
   SecurityGroupIngress1:
       Type: AWS::EC2::SecurityGroupIngress
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 8111
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 8111
 
@@ -235,7 +259,8 @@ Resources:
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 443
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 443
 
@@ -244,7 +269,8 @@ Resources:
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 80
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 80
 
@@ -253,7 +279,8 @@ Resources:
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 22
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 22
   
@@ -261,43 +288,11 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       Subnets: 
-        - !Ref PublicSubnet1
-        - !Ref PublicSubnet2
+      - Ref: PublicSubnet1
+      - Ref: PublicSubnet2
       Tags: 
-        - Key: "Name"
-          Value: Tianguito-Public-Balancer
-
-  PrivateLoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-    Properties: 
-      Subnets: 
-        - !Ref PrivateSubnet1
-        - !Ref PrivateSubnet2
-      Tags: 
-        - Key: "Name"
-          Value: Tianguito-Private-Balancer
-
-  StreamPoint1:
-    Type: AWS::EC2::VPCEndpoint
-    Properties:
-      SecurityGroupIds: 
-        - !Ref TianguitoSG
-      ServiceName: !Sub 'com.amazonaws.us-east-1.kinesis-streams'
-      SubnetIds: 
-        - !Ref PublicSubnet1
-      VpcEndpointType: "Interface"
-      VpcId: !Ref TianguitoVPC
-
-  StreamPoint2:
-    Type: AWS::EC2::VPCEndpoint
-    Properties:
-      SecurityGroupIds: 
-        - !Ref TianguitoSG
-      ServiceName: !Sub 'com.amazonaws.us-east-1.kinesis-streams'
-      SubnetIds: 
-        - !Ref PublicSubnet2
-      VpcEndpointType: "Interface"
-      VpcId: !Ref TianguitoVPC
+      - Key: "Name"
+        Value: Tianguito-Public-Balancer
   
   S3Bucket: 
     Type: AWS::S3::Bucket 
@@ -310,17 +305,17 @@ Resources:
         RoutingRules: 
         - RoutingRuleCondition: 
             HttpErrorCodeReturnedEquals: '404' 
-            KeyPrefixEquals: app/ 
+            KeyPRef:ixEquals: app/ 
           RedirectRule: 
             HostName: tianguito-bucket.us-east-1.amazonaws.com 
-            ReplaceKeyPrefixWith: report-404/
+            ReplaceKeyPRef:ixWith: report-404/
     DeletionPolicy: Retain  
                             
   BucketPolicy: 
     Type: AWS::S3::BucketPolicy 
     Properties:
         Bucket: 
-            Ref: "S3Bucket" 
+            Ref:: "S3Bucket" 
         PolicyDocument: 
             Id: MyPolicy 
             Statement: 
@@ -335,7 +330,7 @@ Resources:
                             -    
                                 - "arn:aws:s3:::" 
                                 - 
-                                    Ref: "S3Bucket" 
+                                    Ref:: "S3Bucket" 
                                 - "/*"
 
   Type: AWS::RDS::DBInstance
@@ -346,10 +341,8 @@ Resources:
   Type: AWS::DynamoDB::Table
   Properties: 
     KeySchema: 
-      - Puesto
+    - Puesto
     TableName: Puestos
-    Tags: 
-      - Tag
 
   Type: AWS::Lambda::Function
   Properties: 
@@ -357,10 +350,8 @@ Resources:
        S3Bucket: "tianguitobucket"
        S3Key: dynamodb-lambda.zip
     Handler: 'handler'
-    Role: !Ref LambdaRole
+    Role: "Tianguito-admin"
     Runtime: nodejs12.x
-    Tags: 
-      - Tag
 
   Type: AWS::Lambda::Function
   Properties: 
@@ -368,7 +359,5 @@ Resources:
        S3Bucket: "tianguitobucket"
        S3Key: rds-lambda.zip
     Handler: 'handler'
-    Role: !Ref LambdaRole
+    Role: "Tianguito-admin"
     Runtime: nodejs12.x
-    Tags: 
-      - Tag
