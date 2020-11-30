@@ -78,32 +78,42 @@ Resources:
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties: 
-      InternetGatewayId: !Ref TianguitoGateway
-      VpcId: !Ref TianguitoVPC
+      InternetGatewayId: 
+        Ref: TianguitoGateway
+      VpcId: 
+        Ref: TianguitoVPC
   
   AssociationPub1:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PublicSubnet1
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PublicSubnet1
   
   AssociationPub2:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PublicSubnet2
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PublicSubnet2
 
   AssociationPriv1:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PrivateSubnet1
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PrivateSubnet1
 
   AssociationPriv2:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties: 
-      RouteTableId: !Ref RoutingTable
-      SubnetId: !Ref PrivateSubnet2
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PrivateSubnet2
 
   TianguitoACL1:
     Type: AWS::EC2::NetworkAcl
@@ -111,13 +121,15 @@ Resources:
       Tags: 
       - Key: "Name"
         Value: TianguitoACL1
-      VpcId: !Ref TianguitoVPC
+      VpcId: 
+        Ref: TianguitoVPC
 
   ACLEntryHTTP:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 80
         To: 80
@@ -129,7 +141,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 443
         To: 443
@@ -141,7 +154,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 22
         To: 22
@@ -153,7 +167,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 3389
         To: 3389
@@ -165,7 +180,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 53
         To: 53
@@ -177,7 +193,8 @@ Resources:
     Type: AWS::EC2::NetworkAclEntry
     Properties: 
       CidrBlock: 0.0.0.0/0
-      NetworkAclId: !Ref TianguitoACL1
+      NetworkAclId: 
+        Ref: TianguitoACL1
       PortRange:
         From: 53
         To: 53
@@ -188,26 +205,34 @@ Resources:
   ACLAssociation1:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PublicSubnet1
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PublicSubnet1
 
   ACLAssociation2:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PublicSubnet2
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PublicSubnet2
 
   ACLAssociation3:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PrivateSubnet1
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PrivateSubnet1
   
   ACLAssociation4:
     Type: AWS::EC2::SubnetNetworkAclAssociation
     Properties: 
-      NetworkAclId: !Ref TianguitoACL1
-      SubnetId: !Ref PrivateSubnet2
+      NetworkAclId: 
+        Ref: TianguitoACL1
+      SubnetId: 
+        Ref: PrivateSubnet2
 
   TianguitoSG:
     Type: AWS::EC2::SecurityGroup
@@ -216,14 +241,16 @@ Resources:
       Tags: 
       - Key: "Name"
         Value: TianguitoSG
-      VpcId: !Ref TianguitoVPC
+      VpcId: 
+        Ref: TianguitoVPC
 
   SecurityGroupIngress1:
       Type: AWS::EC2::SecurityGroupIngress
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 8111
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 8111
 
@@ -232,7 +259,8 @@ Resources:
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 443
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 443
 
@@ -241,7 +269,8 @@ Resources:
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 80
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 80
 
@@ -250,7 +279,8 @@ Resources:
       Properties: 
         CidrIp: 0.0.0.0/0
         FromPort: 22
-        GroupId: !Ref TianguitoSG
+        GroupId: 
+          Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 22
   
@@ -258,8 +288,8 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       Subnets: 
-      - !Ref PublicSubnet1
-      - !Ref PublicSubnet2
+      - Ref: PublicSubnet1
+      - Ref: PublicSubnet2
       Tags: 
       - Key: "Name"
         Value: Tianguito-Public-Balancer
@@ -268,8 +298,8 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties: 
       Subnets: 
-      - !Ref PrivateSubnet1
-      - !Ref PrivateSubnet2
+      - Ref: PrivateSubnet1
+      - Ref: PrivateSubnet2
       Tags: 
       - Key: "Name"
         Value: Tianguito-Private-Balancer
@@ -278,23 +308,25 @@ Resources:
     Type: AWS::EC2::VPCEndpoint
     Properties:
       SecurityGroupIds: 
-      - !Ref TianguitoSG
+      - Ref: TianguitoSG
       ServiceName: !Sub 'com.amazonaws.us-east-1.kinesis-streams'
       SubnetIds: 
-      - !Ref PublicSubnet1
+      - Ref: PublicSubnet1
       VpcEndpointType: "Interface"
-      VpcId: !Ref TianguitoVPC
+      VpcId: 
+        Ref: TianguitoVPC
 
   StreamPoint2:
     Type: AWS::EC2::VPCEndpoint
     Properties:
       SecurityGroupIds: 
-      - !Ref TianguitoSG
+      - Ref: TianguitoSG
       ServiceName: !Sub 'com.amazonaws.us-east-1.kinesis-streams'
       SubnetIds: 
-      - !Ref PublicSubnet2
+      - Ref: PublicSubnet2
       VpcEndpointType: "Interface"
-      VpcId: !Ref TianguitoVPC
+      VpcId: 
+        Ref: TianguitoVPC
   
   S3Bucket: 
     Type: AWS::S3::Bucket 
@@ -307,17 +339,17 @@ Resources:
         RoutingRules: 
         - RoutingRuleCondition: 
             HttpErrorCodeReturnedEquals: '404' 
-            KeyPrefixEquals: app/ 
+            KeyPRef:ixEquals: app/ 
           RedirectRule: 
             HostName: tianguito-bucket.us-east-1.amazonaws.com 
-            ReplaceKeyPrefixWith: report-404/
+            ReplaceKeyPRef:ixWith: report-404/
     DeletionPolicy: Retain  
                             
   BucketPolicy: 
     Type: AWS::S3::BucketPolicy 
     Properties:
         Bucket: 
-            Ref: "S3Bucket" 
+            Ref:: "S3Bucket" 
         PolicyDocument: 
             Id: MyPolicy 
             Statement: 
@@ -332,7 +364,7 @@ Resources:
                             -    
                                 - "arn:aws:s3:::" 
                                 - 
-                                    Ref: "S3Bucket" 
+                                    Ref:: "S3Bucket" 
                                 - "/*"
 
   Type: AWS::RDS::DBInstance
