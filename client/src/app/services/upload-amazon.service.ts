@@ -25,6 +25,12 @@ export class UploadAmazonService {
     return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/rds`, this.requestOptions);
   }
 
+  registerUser(data:any){
+    console.log(this.url)
+    console.log(data)
+    return this.http.post(`${this.url}/register`, data);
+  }
+
   createMarket(data:any){
     return this.http.post(`${this.url}/markets`, data);
   }

@@ -9,14 +9,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.778.0",
+    "amazon-cognito-identity-js": "^4.5.5",
+    "aws-sdk": "^2.799.0",
     "boto": "0.0.1",
     "boto3": "0.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "json2csv": "^5.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.4",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.6"
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6",
+    "request": "^2.88.2"
   }
 }
