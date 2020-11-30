@@ -503,6 +503,7 @@ Resources:
         Protocol: lambda
       - Endpoint: "a01337675@itesm.mx"
         Protocol: email
+
   RDSFreeStorageSNSTopicPolicy:
     Type: AWS::SNS::TopicPolicy
     Properties:
@@ -517,14 +518,17 @@ Resources:
             Action:
               - "SNS:Publish"
             Resource: '*'
+
   LambdaTriggerPermission:
     Type: AWS::Lambda::Permission
     Properties: 
       Action: 'lambda:InvokeFunction'
       FunctionName: !ImportValue 'RDS-FreeStorage-notification-lambda-name'
       Principal: "sns.amazonaws.com"
-      SourceArn: !Ref RDSFreeStorageSNSTopicOutputs:
+      SourceArn: !Ref RDSFreeStorageSNSTopic
+
+Outputs:
   RDSFreeStorageSNSTopicArn:
     Value: !Ref RDSFreeStorageSNSTopic
     Export:
-      Name: !Sub '${AWS::StackName}'
+      Name: tianguito-stack
