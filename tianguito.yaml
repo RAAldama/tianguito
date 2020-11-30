@@ -523,12 +523,6 @@ Resources:
     Type: AWS::Lambda::Permission
     Properties: 
       Action: 'lambda:InvokeFunction'
-      FunctionName: !ImportValue 'RDS-FreeStorage-notification-lambda-name'
+      FunctionName: 'RDS-Free-Storage-Lambda'
       Principal: "sns.amazonaws.com"
       SourceArn: !Ref RDSFreeStorageSNSTopic
-
-Outputs:
-  RDSFreeStorageSNSTopicArn:
-    Value: !Ref RDSFreeStorageSNSTopic
-    Export:
-      Name: RDS-FreeStorage-notification-lambda-name
