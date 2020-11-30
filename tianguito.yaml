@@ -328,15 +328,9 @@ Resources:
         -
           AttributeName: "Puesto"
           AttributeType: "S"
-        -
-          AttributeName: Mercado
-          AttributeType: "S"
       KeySchema: 
         -
           AttributeName: "Puesto"
-          KeyType: "HASH"
-        -
-          AttributeName: Mercado
           KeyType: "HASH"
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
