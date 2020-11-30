@@ -10,7 +10,7 @@ Resources:
       EnableDnsHostnames: "true"
       EnableDnsSupport: "true"
       Tags:
-        - Key: "Application"
-          Value: Tianguito-stack
-        - Key: "Name"
-          Value: Tianguito
+      - Key: "Application"
+        Value: Tianguito-stack
+      - Key: "Name"
+        Value: Tianguito
