@@ -309,7 +309,7 @@ Resources:
             RedirectRule: 
               HostName: tianguito-bucket.us-east-1.amazonaws.com 
               ReplaceKeyPrefixWith: report-404/
-    DeletionPolicy: Retain  
+    DeletionPolicy: Retain
 
   RDSInstance:
     Type: AWS::RDS::DBInstance
@@ -320,6 +320,7 @@ Resources:
       MasterUserPassword: Admin=6280
       DBInstanceClass: db.t3.micro
       DBName: TianguitoMarkets
+      DBInstanceIdentifier: TianguitoRDS
 
   DynamoDB:
     Type: AWS::DynamoDB::Table
