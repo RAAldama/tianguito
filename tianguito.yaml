@@ -472,61 +472,26 @@ Resources:
                 return response;
             };
 
-  CloudWatchAlarmRDS:
-    Type: AWS::CloudWatch::Alarm
-    Properties:
-      AlarmActions:
-        - !ImportValue 'RDS-Alert-SNS-Topic'
-      AlarmDescription: 'Alarma de RDS'
-      ComparisonOperator: LessThanThreshold
-      DatapointsToAlarm: 1
-      Dimensions:
-      - Name: DBInstanceIdentifier
-        Value: Tianguito-RDS
-      EvaluationPeriods: 1
-      MetricName: FreeStorageSpace
-      Namespace: AWS/RDS
-      OKActions:
-        - !ImportValue 'RDS-Alert-SNS-Topic'
-      Period: 60
-      Statistic: Average
-      Threshold: 2147483648
-      TreatMissingData: ignore
-      Unit: Bytes
-
-  RDSFreeStorageSNSTopic:
-    Type: AWS::SNS::Topic
-    Properties: 
-      DisplayName: 'Alerta de espacio en RDS'
-      Subscription: 
-      - Endpoint: !ImportValue 'RDS-FreeStorage-notification-lambda'
-        Protocol: lambda
-      - Endpoint: "a01337675@itesm.mx"
-        Protocol: email
-  RDSFreeStorageSNSTopicPolicy:
-    Type: AWS::SNS::TopicPolicy
-    Properties:
-      Topics:
-        - !Ref RDSFreeStorageSNSTopic
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              AWS: '*'
-            Action:
-              - "SNS:Publish"
-            Resource: '*'
-  LambdaTriggerPermission:
-    Type: AWS::Lambda::Permission
-    Properties: 
-      Action: 'lambda:InvokeFunction'
-      FunctionName: !ImportValue 'RDS-FreeStorage-notification-lambda-name'
-      Principal: "sns.amazonaws.com"
-      SourceArn: !Ref RDSFreeStorageSNSTopic
-      
-Outputs:
-  RDSFreeStorageSNSTopicArn:
-    Value: !Ref RDSFreeStorageSNSTopic
-    Export:
-      Name: !Sub '${AWS::StackName}'
+  SpendingAlarmRDS:
+  Type: AWS::CloudWatch::Alarm
+  Properties:
+    AlarmDescription: 
+      'Fn::Join':
+        - ''
+        - - Alarm if AWS spending is over $
+          - Ref: AlarmThreshold
+    Namespace: AWS/Billing
+    MetricName: EstimatedCharges
+    Dimensions:
+    - Name: Currency
+      Value: USD
+    Statistic: Maximum
+    Period: '21600'
+    EvaluationPeriods: '1'
+    Threshold:
+      Ref: "AlarmThreshold"
+    ComparisonOperator: GreaterThanThreshold
+    AlarmActions:
+    - Ref: "BillingAlarmNotification"
+    InsufficientDataActions:
+    - Ref: "BillingAlarmNotification"
