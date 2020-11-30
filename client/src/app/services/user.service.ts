@@ -23,7 +23,7 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) { }
 
   registerUser(data:any){
-    return this.http.post(`${this.url}/register`, data);
+    return this.http.post(`${this.url}/register`, data)
   }
 
   loginUser(data:any){
