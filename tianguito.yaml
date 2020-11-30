@@ -320,7 +320,7 @@ Resources:
       MasterUserPassword: Admin=6280
       DBInstanceClass: db.t3.micro
       DBName: TianguitoMarkets
-      DBInstanceID: TianguitoRDS
+      DBInstanceIdentifier: TianguitoRDS
 
   DynamoDB:
     Type: AWS::DynamoDB::Table
