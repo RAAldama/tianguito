@@ -308,6 +308,6 @@ Resources:
             KeyPRef:ixEquals: app/ 
           RedirectRule: 
             HostName: tianguito-bucket.us-east-1.amazonaws.com 
-            ReplaceKeyPRef:ixWith: report-404/
+            ReplaceKeyPrefixWith: report-404/
     DeletionPolicy: Retain  
 
