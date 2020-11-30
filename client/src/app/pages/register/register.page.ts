@@ -21,7 +21,36 @@ export class RegisterPage implements OnInit {
   }
 
   submitUser(username, email, password, phone, address){
-    var mexicoPhone = "+52"+phone
+
+    var mexicoPhone = "+52"+phone;
+
+    if(password.length < 8){
+      Swal.fire({
+        title: 'Error al registrarte!',
+        text: 'La contraseña es demasiado pequeña o no contiene mayúscula, número y símbolo',
+        icon: 'error',
+        confirmButtonText: 'Volver a intentar'
+      });
+    };
+
+    if(phone.length < 10){
+      Swal.fire({
+        title: 'Error al registrarte!',
+        text: 'El télefono no es un formato válido',
+        icon: 'error',
+        confirmButtonText: 'Volver a intentar'
+      });
+    };
+
+    if(!email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')){
+      Swal.fire({
+        title: 'Error al registrarte!',
+        text: 'El correo electrónico no es un formato válido',
+        icon: 'error',
+        confirmButtonText: 'Volver a intentar'
+      });
+    }
+
     this.userService.registerUser({username, email, password, phone: mexicoPhone, address}).subscribe(res => {
 
       this.login = true;
@@ -32,6 +61,8 @@ export class RegisterPage implements OnInit {
         icon: 'success',
         confirmButtonText: 'Cool'
       });
+
+      console.log(res);
     });
 
   }

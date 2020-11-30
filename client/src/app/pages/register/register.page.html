@@ -1,65 +1,113 @@
 <ion-content color="primary">
-
   <div class="wrapper" *ngIf="login">
-
     <h1 class="tittle">TianguitoApp</h1>
-  
+
     <form (ngSubmit)="loginUser(email.value, password.value)">
-      
       <ion-item color="primary">
         <ion-label position="floating">Correo Electrónico</ion-label>
-        <ion-input type="email" required name="email" #email></ion-input>
-      </ion-item>
-      
-      <ion-item color="primary">
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" required name="password" #password></ion-input>
+        <ion-input 
+          type="email" 
+          required 
+          name="email" 
+          #email>
+        </ion-input>
       </ion-item>
 
-      <ion-button class="btn-register" expand="block" color="tertiary" type=submit>Ingresar</ion-button>
+      <ion-item color="primary">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input
+          type="password"
+          required
+          name="password"
+          #password
+        ></ion-input>
+      </ion-item>
+
+      <ion-button
+        class="btn-register"
+        expand="block"
+        color="tertiary"
+        type="submit"
+        >Ingresar</ion-button
+      >
     </form>
 
     <p>{{confirmation}}</p>
 
-    <p>¿No formas parte de Tianguito? Ingresa <a class="link" (click)="login = false">aquí</a> </p>
-
+    <p>
+      ¿No formas parte de Tianguito? Ingresa
+      <a class="link" (click)="login = false">aquí</a>
+    </p>
   </div>
 
   <div class="wrapper" *ngIf="!login">
-
     <h1 class="tittle">TianguitoApp</h1>
     <h2>Hora de formar de la red de tianguis más confiable</h2>
-  
-    <form (ngSubmit)="submitUser(user.value, email.value, password.value, phone.value, address.value)">
+
+    <form
+      (ngSubmit)="submitUser(user.value, email.value, password.value, phone.value, address.value)"
+    >
       <ion-item color="primary">
         <ion-label position="floating">Usuario</ion-label>
-        <ion-input required name="user" #user></ion-input>
+        <ion-input 
+          required 
+          name="user" 
+          #user>
+        </ion-input>
       </ion-item>
 
       <ion-item color="primary">
         <ion-label position="floating">Teléfono</ion-label>
-        <ion-input required name="phone" #phone></ion-input>
+        <ion-input 
+          type="number" 
+          required 
+          name="phone" 
+          #phone
+          minlength="10">
+        </ion-input>
       </ion-item>
 
       <ion-item color="primary">
         <ion-label position="floating">Dirección</ion-label>
-        <ion-input required name="address" #address></ion-input>
+        <ion-input 
+          required 
+          name="address" 
+          #address>
+        </ion-input>
       </ion-item>
 
       <ion-item color="primary">
         <ion-label position="floating">Correo Electrónico</ion-label>
-        <ion-input type="email" required name="email" #email></ion-input>
+        <ion-input 
+          type="email" 
+          required 
+          name="email" 
+          #email>
+        </ion-input>
       </ion-item>
 
       <ion-item color="primary">
         <ion-label position="floating">Constraseña</ion-label>
-        <ion-input type="password" required name="password" #password></ion-input>
+        <ion-input
+          type="password"
+          required
+          name="password"
+          #password
+          minlength="8"
+        ></ion-input>
       </ion-item>
-    
-      <ion-button class="btn-register" expand="block" color="tertiary" type=submit>Registrarse</ion-button>
+
+      <ion-button
+        class="btn-register"
+        expand="block"
+        color="tertiary"
+        type="submit"
+        >Registrarse</ion-button
+      >
     </form>
-    <p>Si ya eres parte de la red de Tianguito has clic <a class="link" (click)="login = true">aquí</a> </p>
-
+    <p>
+      Si ya eres parte de la red de Tianguito has clic
+      <a class="link" (click)="login = true">aquí</a>
+    </p>
   </div>
-
 </ion-content>
