@@ -2,3 +2,20 @@ h1{
     margin-left: 20px;
     margin-top: 50px;
 }
+
+agm-map {
+    height: 550px;
+}
+
+input{
+    position: absolute;
+    height: 41px;
+    width: 311px;
+    left: 32px;
+    top: 657px;
+    border-radius: 10px;
+    -webkit-box-shadow: -8px 7px 15px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: -8px 7px 15px -8px rgba(0,0,0,0.75);
+    box-shadow: -8px 7px 15px -8px rgba(0,0,0,0.75);
+    color: black;
+}

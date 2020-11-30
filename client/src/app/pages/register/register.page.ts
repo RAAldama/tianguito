@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterPage implements OnInit {
 
+  login: boolean = false;
+
   constructor(private router: Router, private userService: UserService, private amazon: UploadAmazonService) { }
 
   ngOnInit() {
@@ -23,6 +25,10 @@ export class RegisterPage implements OnInit {
     });
 
     //this.router.navigateByUrl('/tabs/tab1');
+  }
+
+  loginUser(){
+    this.router.navigateByUrl('/tabs/tab1');
   }
 
 }

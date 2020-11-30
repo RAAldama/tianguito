@@ -6,13 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { LocationPage } from './location.page';
 
 import { LocationPageRoutingModule } from './location-routing.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    LocationPageRoutingModule
+    LocationPageRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCIUjg9tznCj5HejSGikuBtrVaoxx9naMI', 
+      libraries: ['places']
+    }),
   ],
   declarations: [LocationPage]
 })
