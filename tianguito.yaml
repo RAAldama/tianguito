@@ -295,3 +295,37 @@ Resources:
         Value: Tianguito-Public-Balancer
   
   
+
+  
+RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties: 
+      DBInstanceClass: db.m1.micro
+      DBName: TianguitoMarkets
+
+  DynamoDB:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      KeySchema: 
+      - Puesto
+      TableName: Puestos
+
+  Lambda1:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Code: 
+        S3Bucket: "tianguitobucket"
+        S3Key: dynamodb-lambda.zip
+      Handler: 'handler'
+      Role: "Tianguito-admin"
+      Runtime: nodejs12.x
+
+  Lambda2:
+    Type: AWS::Lambda::Function
+    Properties: 
+      Code: 
+        S3Bucket: "tianguitobucket"
+        S3Key: rds-lambda.zip
+      Handler: 'handler'
+      Role: "Tianguito-admin"
+      Runtime: nodejs12.x
