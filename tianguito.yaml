@@ -36,3 +36,36 @@ Resources:
       Tags:
       - Key: "Name"
         Value: Tianguito-Pub-2
+
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: "10.0.2.0/24"
+      VpcId:
+        Ref: TianguitoVPC
+      Tags:
+      - Key: "Name"
+        Value: Tianguito-Priv-1
+          
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: "10.0.3.0/24"
+      VpcId:
+        Ref: TianguitoVPC
+      Tags:
+      - Key: "Name"
+        Value: Tianguito-Priv-2
+  
+  RoutingTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+      - Key: "Name"
+        Value: Tianguito_Route_Table
+      VpcId:
+        Ref: TianguitoVPC
+
+  
