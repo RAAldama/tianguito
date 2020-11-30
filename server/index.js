@@ -135,6 +135,33 @@ app.post("/stand", (req, res) => {
   });
 });
 
+app.post("/orders", (req, res) => {
+  const AWS = require("aws-sdk");
+
+  AWS.config.update({
+    accessKeyId: "AKIA4IRMJ7XTPHL2YMNN",
+    secretAccessKey: "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",
+    region: "us-east-1",
+  });
+
+  const dynamodb = new AWS.DynamoDB();
+
+  const params = {
+    TableName: 'Ordenes',
+    Item: {
+      'Id' : {S: req.body.orderID},
+      'Elementos' : {S: req.body.elements},
+      'Total' : {S: req.body.total}
+    }
+  };
+
+  dynamodb.putItem(params, function (err, data) {
+    res.status(200).json({
+      data:data
+    });
+  });
+});
+
 //Convertir a CSV
 const generateCSVFile = (data) => {
   const json2csv = require("json2csv");

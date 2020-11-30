@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class UserService {
     headers: new HttpHeaders(this.headerDict), 
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   registerUser(data:any){
     return this.http.post(`${this.url}/register`, data);
@@ -28,7 +29,7 @@ export class UserService {
   loginUser(data:any){
     return this.http.post(`${this.url}/login`, data).pipe( tap( (ans: any) => {
       localStorage.setItem('token', ans.result.accessToken.jwtToken);
-    }))
+    }), catchError(err => of(`Error en ${err}`)))
   }
 
   validateToken(): boolean{
@@ -37,6 +38,11 @@ export class UserService {
     }else{
       return true;
     }
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/register');
   }
 
 }
