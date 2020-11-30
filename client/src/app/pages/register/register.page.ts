@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
+  login: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -16,6 +18,10 @@ export class RegisterPage implements OnInit {
   submitUser(user, market){
     console.log(user, market);
 
+    this.router.navigateByUrl('/tabs/tab1');
+  }
+
+  loginUser(){
     this.router.navigateByUrl('/tabs/tab1');
   }
 
