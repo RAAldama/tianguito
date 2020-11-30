@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Description: "Levantar una VPC"
-Parameters:
 
 Resources:
   TianguitoVPC:
@@ -12,10 +11,9 @@ Resources:
       EnableDnsSupport: "true"
       Tags:
         - Key: "Application"
-          Value:
-            Ref: "Tianguito"
+          Value: Tianguito-stack
         - Key: "Name"
-          Value: "Tianguito"
+          Value: Tianguito
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
