@@ -303,12 +303,12 @@ Resources:
         IndexDocument: index.html 
         ErrorDocument: error.html 
         RoutingRules: 
-        - RoutingRuleCondition: 
-            HttpErrorCodeReturnedEquals: '404' 
-            KeyPrefixEquals: app/ 
-          RedirectRule: 
-            HostName: tianguito-bucket.us-east-1.amazonaws.com 
-            ReplaceKeyPrefixWith: report-404/
+          - RoutingRuleCondition: 
+              HttpErrorCodeReturnedEquals: '404' 
+              KeyPrefixEquals: app/ 
+            RedirectRule: 
+              HostName: tianguito-bucket.us-east-1.amazonaws.com 
+              ReplaceKeyPrefixWith: report-404/
     DeletionPolicy: Retain  
 
   RDSInstance:
