@@ -234,4 +234,54 @@ Resources:
       SubnetId: 
         Ref: PrivateSubnet2
 
+  TianguitoSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Tianguito security group 
+      Tags: 
+      - Key: "Name"
+        Value: TianguitoSG
+      VpcId: 
+        Ref: TianguitoVPC
+
+  SecurityGroupIngress1:
+      Type: AWS::EC2::SecurityGroupIngress
+      Properties: 
+        CidrIp: 0.0.0.0/0
+        FromPort: 8111
+        GroupId: 
+          Ref: TianguitoSG
+        IpProtocol: tcp
+        ToPort: 8111
+
+  SecurityGroupIngress2:
+      Type: AWS::EC2::SecurityGroupIngress
+      Properties: 
+        CidrIp: 0.0.0.0/0
+        FromPort: 443
+        GroupId: 
+          Ref: TianguitoSG
+        IpProtocol: tcp
+        ToPort: 443
+
+  SecurityGroupIngress3:
+      Type: AWS::EC2::SecurityGroupIngress
+      Properties: 
+        CidrIp: 0.0.0.0/0
+        FromPort: 80
+        GroupId: 
+          Ref: TianguitoSG
+        IpProtocol: tcp
+        ToPort: 80
+
+  SecurityGroupIngress4:
+      Type: AWS::EC2::SecurityGroupIngress
+      Properties: 
+        CidrIp: 0.0.0.0/0
+        FromPort: 22
+        GroupId: 
+          Ref: TianguitoSG
+        IpProtocol: tcp
+        ToPort: 22
+  
   
