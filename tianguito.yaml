@@ -315,6 +315,7 @@ Resources:
     Type: AWS::RDS::DBInstance
     Properties: 
       AllocatedStorage: 20
+      Engine: mariadb
       DBInstanceClass: db.m1.micro
       DBName: TianguitoMarkets
 
