@@ -3,6 +3,24 @@
 
   <div class="content">
 
+    <!-- PANTALLA DE CARRITO -->
+
+    <div class="product-page" *ngIf="cartPage">
+
+      <div class="product-card" *ngFor="let product of products">
+        <h3>owo</h3>
+        <p>
+         owo
+        </p>
+        <p class="price">$ owo MXN</p>
+  
+        <hr>
+      </div>
+
+    </div>
+
+    <!-- PANTALLA DE PRODUCTO -->
+
     <div class="product-page" *ngIf="productPage">
       <h2>{{products[0].name}}</h2>
 
@@ -13,41 +31,56 @@
         {{products[0].description}}
       </p>
       <p class="price">
-        ${{products[0].price}} MXN
+        ${{price}} MXN
       </p>
 
-      <label for="cuantity">Cantidad</label>
-      <br>
-      <input type="number" id="cuantity" placeholder="0">
+      <div>
+        <label for="cuantity">Cantidad</label>
+        <br>
+        <input type="number" id="cuantity" placeholder="0" #quantity (keyup)="productQuantity(quantity.value)">
+      </div>
 
       <div class="ion-text-center">
         <ion-button type="submit" size="large" class="btn">
           Comprar
         </ion-button>
       </div>
+
+      <div class="ion-text-center">
+        <ion-button size="large" class="btn back" color="tertiary" (click)="productPage = false; standPage = true; this.price = this.products[0].price">
+          Atrás
+        </ion-button>
+      </div>
     </div>
 
-    <div class="stand-card">
-      <h4>Puesto de Fruta de Don Miguel</h4>
-      <p>
-        La fruta más fresca y deliciosa del lugar sólo la tiene Don Miguel. 
-      </p>
+    <!-- PANTALLA DE STAND -->
+
+    <div *ngIf="standPage">
+
+      <div class="stand-card">
+        <h4>Puesto de Fruta de Don Miguel</h4>
+        <p>
+          La fruta más fresca y deliciosa del lugar sólo la tiene Don Miguel. 
+        </p>
+      </div>
+    
+      <div class="product-card" *ngFor="let product of products" (click)="productPageAppear(); standPage = false;">
+        <h3>{{product.name}}</h3>
+        <p>
+          {{product.description}}
+        </p>
+        <p class="price">$ {{product.price}} MXN</p>
+    
+        <hr>
+
+      </div>
+        <ion-button class="cart-btn" color="primary" (click)="cartPage = true; standPage = false" *ngIf="!cartPage">
+          <ion-icon name="cart"></ion-icon>
+          Carrito
+        </ion-button>
+      </div>
+      
     </div>
 
-    <div class="product-card" *ngFor="let product of products" (click)="productPageAppear()">
-      <h3>{{product.name}}</h3>
-      <p>
-        {{product.description}}
-      </p>
-      <p class="price">$ {{product.price}} MXN</p>
-
-      <hr>
-    </div>
-
-    <ion-button class="cart-btn" color="primary">
-      <ion-icon name="cart"></ion-icon>
-      Carrito
-    </ion-button>
-  </div>
 
 </ion-content>
