@@ -232,9 +232,8 @@ app.get("/register", () => {
 })
 
 app.post("/register", (req,res) => {
-  console.log("register")
   var attributeList = [];
-  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"name",Value:req.body.email}));
+  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"name",Value:req.body.username}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"address",Value:req.body.address}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"phone_number",Value:req.body.phone}));
@@ -246,7 +245,6 @@ app.post("/register", (req,res) => {
       }
       cognitoUser = result.user;
       console.log('user name is ' + cognitoUser.getUsername());
-      Login(req.body.email,req.body.password)
       return res.status(200).json({
         result
       })
@@ -254,12 +252,14 @@ app.post("/register", (req,res) => {
 
 })
 
-//Métodos de Cognito
+app.post("/login", (req,res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+  console.log(email,password)
 
-function Login(email,password) {
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-      Username : email,
-      Password : password,
+    Username: email,
+    Password : password,
   });
 
   var userData = {
@@ -269,16 +269,25 @@ function Login(email,password) {
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
   cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
-          console.log('access token + ' + result.getAccessToken().getJwtToken());
+          /*console.log('access token + ' + result.getAccessToken().getJwtToken());
           console.log('id token + ' + result.getIdToken().getJwtToken());
-          console.log('refresh token + ' + result.getRefreshToken().getToken());
+          console.log('refresh token + ' + result.getRefreshToken().getToken());*/
+          return res.status(200).json({
+            result,
+            logged: true
+          })
       },
       onFailure: function(err) {
-          console.log(err);
+        return res.status(200).json({
+          err,
+          logged: false
+        })
       },
 
   });
-}
+})
+
+//Métodos de Cognito
 
 function ValidateToken(token) {
   request({

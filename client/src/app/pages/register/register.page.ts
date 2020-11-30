@@ -21,14 +21,21 @@ export class RegisterPage implements OnInit {
   submitUser(username, email, password, phone, address){
     var mexicoPhone = "+52"+phone
     this.userService.registerUser({username, email, password, phone: mexicoPhone, address}).subscribe(res => {
-      console.log(res)
+      this.login = true;
     });
 
-    //this.router.navigateByUrl('/tabs/tab1');
   }
 
-  loginUser(){
-    this.router.navigateByUrl('/tabs/tab1');
+  loginUser(email,password){
+    this.userService.loginUser({email,password}).subscribe((res:any) => {
+      if(res.logged){
+        console.log(res)
+        //this.router.navigateByUrl('/tabs/tab1');
+      }else{
+        console.log("failure")
+      }
+      
+    })
   }
 
 }
