@@ -16,9 +16,3 @@ phases:
 artifacts:
   files:
     - tianguito.yaml
-  #name: $(date +%Y-%m-%d)
-  #discard-paths: yes
-  #base-directory: location
-#cache:
-  #paths:
-    # - We don't currently cache anything
