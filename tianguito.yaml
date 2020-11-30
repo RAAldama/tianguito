@@ -294,40 +294,6 @@ Resources:
       - Key: "Name"
         Value: Tianguito-Public-Balancer
 
-  PrivateLoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-    Properties: 
-      Subnets: 
-      - Ref: PrivateSubnet1
-      - Ref: PrivateSubnet2
-      Tags: 
-      - Key: "Name"
-        Value: Tianguito-Private-Balancer
-
-  StreamPoint1:
-    Type: AWS::EC2::VPCEndpoint
-    Properties:
-      SecurityGroupIds: 
-      - Ref: TianguitoSG
-      ServiceName: !Sub 'com.amazonaws.us-east-1.kinesis-streams'
-      SubnetIds: 
-      - Ref: PublicSubnet1
-      VpcEndpointType: "Interface"
-      VpcId: 
-        Ref: TianguitoVPC
-
-  StreamPoint2:
-    Type: AWS::EC2::VPCEndpoint
-    Properties:
-      SecurityGroupIds: 
-      - Ref: TianguitoSG
-      ServiceName: !Sub 'com.amazonaws.us-east-1.kinesis-streams'
-      SubnetIds: 
-      - Ref: PublicSubnet2
-      VpcEndpointType: "Interface"
-      VpcId: 
-        Ref: TianguitoVPC
-
   Type: AWS::RDS::DBInstance
   Properties: 
     DBInstanceClass: db.m1.micro
