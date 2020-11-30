@@ -365,7 +365,7 @@ Resources:
        S3Bucket: "tianguitobucket"
        S3Key: rds-lambda.zip
     Handler: 'handler'
-    Role: !Ref LambdaRole
+    Role: "Tianguito-admin"
     Runtime: nodejs12.x
     Tags: 
     - Tag
