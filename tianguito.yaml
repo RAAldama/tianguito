@@ -314,13 +314,23 @@ Resources:
   RDSInstance:
     Type: AWS::RDS::DBInstance
     Properties: 
+      AllocatedStorage: 20
       DBInstanceClass: db.m1.micro
       DBName: TianguitoMarkets
 
   DynamoDB:
     Type: AWS::DynamoDB::Table
     Properties: 
+      AttributeDefinitions:
+        -
+          AttributeName: "Puesto"
+          AttributeType: "S"
+        -
+          AttributeName: Mercado
+          AttributeType: "S"
       KeySchema: 
-      - Puesto
+        -
+          AttributeName: "Puesto"
+          KeyType: "HASH"
       TableName: Puestos
 
