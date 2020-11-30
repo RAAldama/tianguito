@@ -471,3 +471,21 @@ Resources:
                 };
                 return response;
             };
+
+  CloudWatchAlarmRDS:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: 'Alarma de RDS'
+      ComparisonOperator: LessThanThreshold
+      DatapointsToAlarm: 1
+      Dimensions:
+      - Name: DBInstanceIdentifier
+        Value: Tianguito-RDS
+      EvaluationPeriods: 1
+      MetricName: FreeStorageSpace
+      Namespace: AWS/RDS
+      Period: 60
+      Statistic: Average
+      Threshold: 2147483648
+      TreatMissingData: ignore
+      Unit: Bytes
