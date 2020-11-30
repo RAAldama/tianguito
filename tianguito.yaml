@@ -475,6 +475,8 @@ Resources:
   CloudWatchAlarmRDS:
     Type: AWS::CloudWatch::Alarm
     Properties:
+      AlarmActions:
+        - !ImportValue 'RDS-Alert-SNS-Topic'
       AlarmDescription: 'Alarma de RDS'
       ComparisonOperator: LessThanThreshold
       DatapointsToAlarm: 1
@@ -484,8 +486,45 @@ Resources:
       EvaluationPeriods: 1
       MetricName: FreeStorageSpace
       Namespace: AWS/RDS
+      OKActions:
+        - !ImportValue 'RDS-Alert-SNS-Topic'
       Period: 60
       Statistic: Average
       Threshold: 2147483648
       TreatMissingData: ignore
       Unit: Bytes
+
+  RDSFreeStorageSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties: 
+      DisplayName: 'Alerta de espacio en RDS'
+      Subscription: 
+      - Endpoint: !ImportValue 'RDS-FreeStorage-notification-lambda'
+        Protocol: lambda
+      - Endpoint: "a01337675@itesm.mx"
+        Protocol: email
+  RDSFreeStorageSNSTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics:
+        - !Ref RDSFreeStorageSNSTopic
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: '*'
+            Action:
+              - "SNS:Publish"
+            Resource: '*'
+  LambdaTriggerPermission:
+    Type: AWS::Lambda::Permission
+    Properties: 
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !ImportValue 'RDS-FreeStorage-notification-lambda-name'
+      Principal: "sns.amazonaws.com"
+      SourceArn: !Ref RDSFreeStorageSNSTopicOutputs:
+  RDSFreeStorageSNSTopicArn:
+    Value: !Ref RDSFreeStorageSNSTopic
+    Export:
+      Name: !Sub '${AWS::StackName}'
