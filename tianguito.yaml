@@ -293,7 +293,41 @@ Resources:
       Tags: 
       - Key: "Name"
         Value: Tianguito-Public-Balancer
+  
+  S3Bucket: 
+    Type: AWS::S3::Bucket 
+    Properties:
+      BucketName: tianguito-bucket1
+      AccessControl: PublicRead 
+      WebsiteConfiguration: 
+        IndexDocument: index.html 
+        ErrorDocument: error.html 
+        RoutingRules: 
+        - RoutingRuleCondition: 
+            HttpErrorCodeReturnedEquals: '404' 
+            KeyPrefixEquals: app/ 
+          RedirectRule: 
+            HostName: tianguito-bucket.us-east-1.amazonaws.com 
+            ReplaceKeyPrefixWith: report-404/
+    DeletionPolicy: Retain  
 
+  BucketPolicy: 
+    Type: AWS::S3::BucketPolicy 
+    Properties:
+        Bucket: 
+            Ref: "S3Bucket" 
+        PolicyDocument:
+            Statement: 
+                - Action: 
+                      - 's3:GetObject' 
+                    Effect: Allow 
+                    Principal: '*'
+                    Resource: 
+                        'Fn::Join': 
+                            - ''
+                            - - "arn:aws:s3:::" 
+                              - Ref: "S3Bucket" 
+                              - /*
 
   RDSInstance:
     Type: AWS::RDS::DBInstance
@@ -308,4 +342,3 @@ Resources:
       - Puesto
       TableName: Puestos
 
-  
