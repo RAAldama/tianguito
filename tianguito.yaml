@@ -327,45 +327,6 @@ Resources:
       VpcEndpointType: "Interface"
       VpcId: 
         Ref: TianguitoVPC
-  
-  S3Bucket: 
-    Type: AWS::S3::Bucket 
-    Properties:
-      BucketName: tianguito-bucket1
-      AccessControl: PublicRead 
-      WebsiteConfiguration: 
-        IndexDocument: index.html 
-        ErrorDocument: error.html 
-        RoutingRules: 
-        - RoutingRuleCondition: 
-            HttpErrorCodeReturnedEquals: '404' 
-            KeyPRef:ixEquals: app/ 
-          RedirectRule: 
-            HostName: tianguito-bucket.us-east-1.amazonaws.com 
-            ReplaceKeyPRef:ixWith: report-404/
-    DeletionPolicy: Retain  
-                            
-  BucketPolicy: 
-    Type: AWS::S3::BucketPolicy 
-    Properties:
-        Bucket: 
-            Ref:: "S3Bucket" 
-        PolicyDocument: 
-            Id: MyPolicy 
-            Statement: 
-                - 
-                    Action: 
-                        - 's3:GetObject' 
-                    Effect: Allow 
-                    Principal: '*'
-                    Resource: 
-                        Fn::Join: 
-                            - ""
-                            -    
-                                - "arn:aws:s3:::" 
-                                - 
-                                    Ref:: "S3Bucket" 
-                                - "/*"
 
   Type: AWS::RDS::DBInstance
   Properties: 
@@ -377,8 +338,6 @@ Resources:
     KeySchema: 
     - Puesto
     TableName: Puestos
-    Tags: 
-    - Tag
 
   Type: AWS::Lambda::Function
   Properties: 
@@ -388,8 +347,6 @@ Resources:
     Handler: 'handler'
     Role: "Tianguito-admin"
     Runtime: nodejs12.x
-    Tags: 
-    - Tag
 
   Type: AWS::Lambda::Function
   Properties: 
@@ -399,5 +356,3 @@ Resources:
     Handler: 'handler'
     Role: "Tianguito-admin"
     Runtime: nodejs12.x
-    Tags: 
-    - Tag
