@@ -318,7 +318,7 @@ Resources:
       Engine: mariadb
       MasterUsername: root
       MasterUserPassword: Admin=6280
-      DBInstanceClass: db.m1.micro
+      DBInstanceClass: db.m6g.micro
       DBName: TianguitoMarkets
 
   DynamoDB:
