@@ -48,6 +48,10 @@ export class UploadAmazonService {
     return this.http.post(`${this.url}/stand`, data);
   }
 
+  createOrder(data: any){
+    return this.http.post(`${this.url}/orders`, data);
+  }
+
   createProduct(data: any){
     return this.http.post(`${this.url}/product`, data);
   }
