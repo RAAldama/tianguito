@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterPage implements OnInit {
 
   login: boolean = false;
+  confirmation = ""
 
   constructor(private router: Router, private userService: UserService, private amazon: UploadAmazonService) { }
 
@@ -32,9 +33,10 @@ export class RegisterPage implements OnInit {
         console.log(res)
         //this.router.navigateByUrl('/tabs/tab1');
       }else{
+        this.confirmation = "Error al iniciar sesión, revisar datos de inicio de sesión"
+        console.log(this.confirmation)
         console.log("failure")
       }
-      
     })
   }
 

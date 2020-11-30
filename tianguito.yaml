@@ -2,22 +2,12 @@ AWSTemplateFormatVersion: "2010-09-09"
 
 Description: "Levantar una VPC"
 Parameters:
-  VPCName:
-    Description: "Nombre de la VPC"
-    Type: String
-  VPCRange:
-    Description: "Rango de la VPC"
-    Type: String
-  LambdaRole:
-    Description: IAM Lambda Role
-    Type: String
-    Default: arn:aws:iam::514815351447:role/LambdaCloudFormationTest
 
 Resources:
   TianguitoVPC:
     Type: AWS::EC2::VPC
     Properties:
-      CidrBlock: !Ref VPCRange
+      CidrBlock: "10.0.0.0/16"
       EnableDnsHostnames: "true"
       EnableDnsSupport: "true"
       Tags:
@@ -26,7 +16,7 @@ Resources:
             Ref: "AWS::StackName"
         - Key: "Name"
           Value:
-            Ref: VPCName
+            Ref: "TianguitoVPC"
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
