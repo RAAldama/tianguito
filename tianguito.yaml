@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Description: "Levantar una VPC"
-Parameters:
 
 Resources:
   TianguitoVPC:
