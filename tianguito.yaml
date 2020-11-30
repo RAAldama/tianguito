@@ -68,4 +68,51 @@ Resources:
       VpcId:
         Ref: TianguitoVPC
 
+  TianguitoGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties: 
+      Tags: 
+      - Key: "Name"
+        Value: Tianguito-Gateway
+  
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: 
+      InternetGatewayId: 
+        Ref: TianguitoGateway
+      VpcId: 
+        Ref: TianguitoVPC
+  
+  AssociationPub1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PublicSubnet1
+  
+  AssociationPub2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PublicSubnet2
+
+  AssociationPriv1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PrivateSubnet1
+
+  AssociationPriv2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: 
+        Ref: RoutingTable
+      SubnetId: 
+        Ref: PrivateSubnet2
+
   
