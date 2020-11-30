@@ -294,18 +294,20 @@ Resources:
       - Key: "Name"
         Value: Tianguito-Public-Balancer
   
-  
+  S3Bucket: 
+    Type: AWS::S3::Bucket 
+    Properties:
+      BucketName: tianguito-bucket1
+      AccessControl: PublicRead 
+      WebsiteConfiguration: 
+        IndexDocument: index.html 
+        ErrorDocument: error.html 
+        RoutingRules: 
+        - RoutingRuleCondition: 
+            HttpErrorCodeReturnedEquals: '404' 
+            KeyPRef:ixEquals: app/ 
+          RedirectRule: 
+            HostName: tianguito-bucket.us-east-1.amazonaws.com 
+            ReplaceKeyPRef:ixWith: report-404/
+    DeletionPolicy: Retain  
 
-  
-RDSInstance:
-    Type: AWS::RDS::DBInstance
-    Properties: 
-      DBInstanceClass: db.m1.micro
-      DBName: TianguitoMarkets
-
-  DynamoDB:
-    Type: AWS::DynamoDB::Table
-    Properties: 
-      KeySchema: 
-      - Puesto
-      TableName: Puestos
