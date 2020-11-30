@@ -8,10 +8,6 @@ const routes: Routes = [
     path: '',
     component: StandPage
   },
-  {
-    path: 'product/:id',
-    loadChildren: () => import('../product/product.module').then( m => m.ProductPageModule)
-  }
 ];
 
 @NgModule({
