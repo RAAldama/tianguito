@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UploadAmazonService } from '../../services/upload-amazon.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  markets;
+
+  constructor(private uploadAmazonService: UploadAmazonService) {
+    /*
+    uploadAmazonService.getMarkets().subscribe((ans: any) => {
+      this.markets = ans.body.markets;
+      console.log(this.markets);
+    })
+    */
+  }
 
 }

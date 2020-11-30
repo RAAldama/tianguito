@@ -61,14 +61,13 @@ export class StandPage implements OnInit {
       this.price = this.products[this.index].price;
     }
 
-   this.products[this.index].quantity = value;
+    this.products[this.index].quantity = value;
     this.price = this.products[this.index].price * value;
     
   }
 
   addProduct(product){
     this.purchase.push(product);
-    console.log(this.purchase);
   }
 
   cart(){

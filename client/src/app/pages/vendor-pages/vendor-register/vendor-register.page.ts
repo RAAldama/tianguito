@@ -11,7 +11,6 @@ import { UploadAmazonService } from '../../../services/upload-amazon.service';
 export class VendorRegisterPage implements OnInit {
 
   markets;
-  //markets;
   createForm = false;
   modifyForm = false;
 
