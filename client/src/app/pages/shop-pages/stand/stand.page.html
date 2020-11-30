@@ -1,5 +1,6 @@
 <ion-content color="primary">
-  <h1 routerLink="/tabs/tab3">Tu tianguis</h1>
+  <h1 routerLink="/tabs/tab3" *ngIf="!cartPage">Tu tianguis</h1>
+  <h1 routerLink="/tabs/tab3" *ngIf="cartPage" (click)="cartPage = false; standPage = true">Carrito</h1>
 
   <div class="content">
 
@@ -7,14 +8,19 @@
 
     <div class="product-page" *ngIf="cartPage">
 
-      <div class="product-card" *ngFor="let product of products">
-        <h3>owo</h3>
+      <div class="product-card cart-card" *ngFor="let item of purchase;">
+        <h3>{{item.name}}</h3>
         <p>
-         owo
+         Cantidad: {{item.quantity}}
         </p>
-        <p class="price">$ owo MXN</p>
+        <p class="price">$ {{item.price * item.quantity}} MXN</p>
   
         <hr>
+      </div>
+
+      <div class="total">
+        <div class="owo">Total</div>
+        <div class="price lel">$ {{totalPrice}}</div>
       </div>
 
     </div>
@@ -22,13 +28,13 @@
     <!-- PANTALLA DE PRODUCTO -->
 
     <div class="product-page" *ngIf="productPage">
-      <h2>{{products[0].name}}</h2>
+      <h2>{{products[index].name}}</h2>
 
       <p class="description">
-        {{products[0].stand}}
+        {{products[index].stand}}
       </p>
       <p>
-        {{products[0].description}}
+        {{products[index].description}}
       </p>
       <p class="price">
         ${{price}} MXN
@@ -41,7 +47,7 @@
       </div>
 
       <div class="ion-text-center">
-        <ion-button type="submit" size="large" class="btn">
+        <ion-button type="submit" size="large" class="btn" (click)="addProduct(products[index]); productPage=false; standPage=true">
           Comprar
         </ion-button>
       </div>
@@ -64,7 +70,7 @@
         </p>
       </div>
     
-      <div class="product-card" *ngFor="let product of products" (click)="productPageAppear(); standPage = false;">
+      <div class="product-card" *ngFor="let product of products; let i = index;" (click)="productPageAppear(i); standPage = false;">
         <h3>{{product.name}}</h3>
         <p>
           {{product.description}}
@@ -74,9 +80,9 @@
         <hr>
 
       </div>
-        <ion-button class="cart-btn" color="primary" (click)="cartPage = true; standPage = false" *ngIf="!cartPage">
+        <ion-button class="cart-btn" color="primary" (click)="cart()" *ngIf="!cartPage">
           <ion-icon name="cart"></ion-icon>
-          Carrito
+          Carrito ( {{purchase.length}} )
         </ion-button>
       </div>
       
