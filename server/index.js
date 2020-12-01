@@ -23,7 +23,7 @@ app.get("/markets", (req, res) => {
   const mysql = require("mysql");
 
   const connection = mysql.createConnection({
-    host: "tianguito-rds-instance.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
+    host: "tianguito-rds-security.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
     user: "root",
     password: "Admin=6280",
     port: "3306",
@@ -42,7 +42,7 @@ app.post("/markets", (req, res) => {
   console.log("reqrqrqr")
 
   const connection = mysql.createConnection({
-    host: "tianguito-rds-instance.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
+    host: "tianguito-rds-security.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
     user: "root",
     password: "Admin=6280",
     port: "3306",
@@ -62,7 +62,7 @@ app.put("/markets", (req, res) => {
   const mysql = require("mysql");
 
   const connection = mysql.createConnection({
-    host: "tianguito-rds-instance.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
+    host: "tianguito-rds-security.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
     user: "admin",
     password: "Admin6280",
     port: "3306",
