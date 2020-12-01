@@ -27,7 +27,7 @@ app.get("/markets", (req, res) => {
     user: "root",
     password: "Admin=6280",
     port: "3306",
-    database: "TianguitoMarkets",
+    database: "Markets",
   });
 
   connection.connect();
@@ -46,7 +46,7 @@ app.post("/markets", (req, res) => {
     user: "root",
     password: "Admin=6280",
     port: "3306",
-    database: "TianguitoMarkets",
+    database: "Markets",
   });
 
   connection.connect();
@@ -66,7 +66,7 @@ app.put("/markets", (req, res) => {
     user: "admin",
     password: "Admin=6280",
     port: "3306",
-    database: "TianguitoMarkets",
+    database: "Markets",
   });
 
   connection.connect();
