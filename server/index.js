@@ -32,6 +32,8 @@ app.get("/markets", (req, res) => {
 
   connection.connect();
 
+  console.log('lol')
+
   connection.query('SELECT * FROM markets', (err, results, fields) => {
     res.status(200).json({ markets: results })
   })

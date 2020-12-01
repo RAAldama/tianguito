@@ -450,11 +450,11 @@ Resources:
 
           const createConnection = () => {
             return mysql.createConnection({
-              host: "tianguito-rds.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
+              host: "tianguito-rds-security.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
               user: "root",
               password: "Admin=6280",
               port: "3306",
-              database: "TianguitoMarkets",
+              database: "Markets",
             });
           };
 
