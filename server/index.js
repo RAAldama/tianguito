@@ -24,8 +24,8 @@ app.get("/markets", (req, res) => {
 
   const connection = mysql.createConnection({
     host: "tianguito.cyhw3fadblmi.us-east-1.rds.amazonaws.com",
-    user: "admin",
-    password: "Admin6280",
+    user: "root",
+    password: "Admin=6280",
     port: "3306",
     database: "TianguitoMarkets",
   });
@@ -43,8 +43,8 @@ app.post("/markets", (req, res) => {
 
   const connection = mysql.createConnection({
     host: "tianguito.cyhw3fadblmi.us-east-1.rds.amazonaws.com",
-    user: "admin",
-    password: "Admin6280",
+    user: "root",
+    password: "Admin=6280",
     port: "3306",
     database: "TianguitoMarkets",
   });
