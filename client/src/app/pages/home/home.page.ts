@@ -9,15 +9,15 @@ import { UserService } from '../../services/user.service';
 })
 export class HomePage {
 
-  markets;
+  markets = [];
 
   constructor(private uploadAmazonService: UploadAmazonService, private userService: UserService) {
-    /*
-    uploadAmazonService.getMarkets().subscribe((ans: any) => {
-      this.markets = ans.body.markets;
+    
+    uploadAmazonService.getMarkets().subscribe((res: any) => {
+      this.markets = res.markets;
       console.log(this.markets);
     })
-    */
+    
   }
 
   logout(){

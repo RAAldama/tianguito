@@ -49,8 +49,22 @@ h4{
     top: 250px;
 }
 
-.logout{
+.market-card{
+    margin-bottom: 10px;
+}
+
+.vendor{
     position: absolute;
     bottom: 10px;
-    left: 35%;
+
+    h3{
+        margin-left: 10px;
+        font-size: 16px;
+    }
+}
+
+.logout{
+    position: fixed;
+    top: 0;
+    right: 1%;
 }
