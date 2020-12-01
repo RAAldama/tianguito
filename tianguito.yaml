@@ -283,6 +283,16 @@ Resources:
           Ref: TianguitoSG
         IpProtocol: tcp
         ToPort: 22
+
+  SecurityGroupIngress5:
+      Type: AWS::EC2::SecurityGroupIngress
+      Properties: 
+        CidrIp: 0.0.0.0/0
+        FromPort: 3306
+        GroupId: 
+          Ref: TianguitoSG
+        IpProtocol: tcp
+        ToPort: 3306
   
   PublicLoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -321,6 +331,7 @@ Resources:
       DBInstanceClass: db.t3.micro
       DBName: TianguitoMarkets
       DBInstanceIdentifier: Tianguito-RDS
+      PubliclyAccessible: true
       VPCSecurityGroups:
         - !Ref TianguitoSG
 
