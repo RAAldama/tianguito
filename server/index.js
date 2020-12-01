@@ -78,15 +78,19 @@ app.put("/markets", (req, res) => {
   })
 });
 
+awsCredentials = {
+  accessKeyId: "ASIA4ZBKUXL4BEMOEPW5",
+  secretAccessKey: "4ofF6l+uLsc87lM0pPJG6RfMpGP3is4WTRN787+Z",
+  awsSessionToken: "FwoGZXIvYXdzECAaDIN7fXiGBLwofgb/KCK4AZUpbfjMbKpv29mv66bZFcW8zXyiEUvoUZZj3hIBOd3nsaFDcRU7k1VDwTAeDdpdTh9flyB8JC33Tf+kM/Ed7IA4SIb/dDMOBeCVvvX7Fh96bw3DyaL2BCQ6OPZbJT8LS3qGygxNss4+/MoaOs6zL6fYwfQ2iV2hWTmv5O5JllyxFoWuW7M/o6qCVl25zttlz6AedUhZMBEEkLO7phnF6jjATFmc8HylRmHSCbNjIdNT1PVMvRGbHIQolpSb/gUyLZ+0ONhPzDR25sRojKDR2XEBKoIYmTUnbvhubKqFIqAs9MMQ71fyH/mZO84vyA==",
+  region: "us-east-1",
+}
+
 //DynamoDB (Para ver y crear usuarios)
 app.get("/stand", (req, res) => {
   const AWS = require("aws-sdk");
 
-  AWS.config.update({
-    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
-    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
-    region: "us-east-1",
-  });
+  console.log(awsCredentials)
+  AWS.config.update(awsCredentials);
 
   const dynamodb = new AWS.DynamoDB();
 
@@ -112,11 +116,7 @@ app.get("/stand", (req, res) => {
 app.post("/stand", (req, res) => {
   const AWS = require("aws-sdk");
 
-  AWS.config.update({
-    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
-    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
-    region: "us-east-1",
-  });
+  AWS.config.update(awsCredentials);
 
   const dynamodb = new AWS.DynamoDB();
 
@@ -140,11 +140,7 @@ app.post("/stand", (req, res) => {
 app.post("/orders", (req, res) => {
   const AWS = require("aws-sdk");
 
-  AWS.config.update({
-    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
-    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
-    region: "us-east-1",
-  });
+  AWS.config.update(awsCredentials);
 
   const dynamodb = new AWS.DynamoDB();
 
@@ -182,11 +178,7 @@ app.post("/product", (req, res) => {
   const file = generateCSVFile(req.body);
   const bufferObject = new Buffer.from(file);
 
-  AWS.config.update({
-    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
-    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
-    region: "us-east-1",
-  });
+  AWS.config.update(awsCredentials);
 
   var params = {
     Bucket: "tianguito-bucket1",
@@ -227,11 +219,7 @@ app.get("/product", (req, res) => {
   const file = generateCSVFile(req.body);
   const bufferObject = new Buffer.from(file);
 
-  AWS.config.update({
-    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
-    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
-    region: "us-east-1",
-  });
+  AWS.config.update(awsCredentials);
 
   var params = {
     Bucket: "tianguito-bucket1",
