@@ -64,7 +64,7 @@ app.put("/markets", (req, res) => {
   const connection = mysql.createConnection({
     host: "tianguito-rds-security.ciulbxwrxkd7.us-east-1.rds.amazonaws.com",
     user: "admin",
-    password: "Admin6280",
+    password: "Admin=6280",
     port: "3306",
     database: "TianguitoMarkets",
   });
