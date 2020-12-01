@@ -74,6 +74,14 @@ Resources:
       Tags: 
       - Key: "Name"
         Value: Tianguito-Gateway
+
+  TianguitoSubGroup:
+      Type: "AWS::RDS::DBSubnetGroup"
+      Properties:
+        DBSubnetGroupDescription: "description"
+        SubnetIds:
+          - !Ref PublicSubnet1
+          - !Ref PublicSubnet2
   
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -334,6 +342,9 @@ Resources:
       PubliclyAccessible: true
       VPCSecurityGroups:
         - !Ref TianguitoSG
+      DBSubnetGroupName:
+        Ref: TianguitoSubGroup
+
 
   DynamoDB:
     Type: AWS::DynamoDB::Table
