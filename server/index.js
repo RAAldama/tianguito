@@ -187,14 +187,14 @@ app.post("/product", (req, res) => {
   });
 
   var params = {
-    Bucket: "tianguitobucket",
+    Bucket: "tianguito-bucket1",
     Key: "productos.csv",
     Body: bufferObject,
     ACL: "public-read",
   };
 
   var paramsGet = {
-    Bucket: "tianguitobucket",
+    Bucket: "tianguito-bucket1",
     Key: "productos.csv",
   }
 
@@ -232,7 +232,7 @@ app.get("/product", (req, res) => {
   });
 
   var params = {
-    Bucket: "tianguitobucket",
+    Bucket: "tianguito-bucket1",
     Key: "productos.csv",
     Body: bufferObject,
     ACL: "public-read",
