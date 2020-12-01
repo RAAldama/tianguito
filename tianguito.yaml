@@ -338,12 +338,16 @@ Resources:
       MasterUserPassword: Admin=6280
       DBInstanceClass: db.t3.micro
       DBName: TianguitoMarkets
-      DBInstanceIdentifier: Tianguito-RDS-instance
-      PubliclyAccessible: true
-      VPCSecurityGroups:
-        - !Ref TianguitoSG
-      DBSubnetGroupName:
-        Ref: TianguitoSubGroup
+      DBInstanceIdentifier: Tianguito-RDS-security
+      DBSecurityGroups:
+        - !Ref DBSecurityGroup
+
+  DBSecurityGroup:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: All-Security-Group
+      DBSecurityGroupIngress:
+        - CIDRIP: 0.0.0.0/0
 
 
   DynamoDB:
