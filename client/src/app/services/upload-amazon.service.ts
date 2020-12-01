@@ -22,7 +22,7 @@ export class UploadAmazonService {
   }
 
   getMarkets(){
-    return this.http.get(`https://j4qtm73gqa.execute-api.us-east-1.amazonaws.com/Deploy`, this.requestOptions);
+    return this.http.get(`${this.url}/markets`, this.requestOptions);
   }
 
   registerUser(data:any){
@@ -40,7 +40,7 @@ export class UploadAmazonService {
   }
 
   getStands(){
-    return this.http.get(`https://ctu2boz7jl.execute-api.us-east-1.amazonaws.com/Tianguito/dynamodb`, this.requestOptions);
+    return this.http.get(`${this.url}/stand`, this.requestOptions);
   }
 
   createStand(data: any){
