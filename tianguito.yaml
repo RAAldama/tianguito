@@ -330,7 +330,7 @@ Resources:
       MasterUserPassword: Admin=6280
       DBInstanceClass: db.t3.micro
       DBName: TianguitoMarkets
-      DBInstanceIdentifier: Tianguito-RDS
+      DBInstanceIdentifier: Tianguito-RDS-instance
       PubliclyAccessible: true
       VPCSecurityGroups:
         - !Ref TianguitoSG
