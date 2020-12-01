@@ -81,8 +81,8 @@ app.get("/stand", (req, res) => {
   const AWS = require("aws-sdk");
 
   AWS.config.update({
-    accessKeyId: "AKIA4IRMJ7XTPHL2YMNN",
-    secretAccessKey: "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",
+    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
+    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
     region: "us-east-1",
   });
 
@@ -111,8 +111,8 @@ app.post("/stand", (req, res) => {
   const AWS = require("aws-sdk");
 
   AWS.config.update({
-    accessKeyId: "AKIA4IRMJ7XTPHL2YMNN",
-    secretAccessKey: "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",
+    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
+    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
     region: "us-east-1",
   });
 
@@ -139,8 +139,8 @@ app.post("/orders", (req, res) => {
   const AWS = require("aws-sdk");
 
   AWS.config.update({
-    accessKeyId: "AKIA4IRMJ7XTPHL2YMNN",
-    secretAccessKey: "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",
+    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
+    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
     region: "us-east-1",
   });
 
@@ -181,8 +181,8 @@ app.post("/product", (req, res) => {
   const bufferObject = new Buffer.from(file);
 
   AWS.config.update({
-    accessKeyId: "AKIARDKAXXUNHMX3NSEA",
-    secretAccessKey: "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",
+    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
+    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
     region: "us-east-1",
   });
 
@@ -226,8 +226,8 @@ app.get("/product", (req, res) => {
   const bufferObject = new Buffer.from(file);
 
   AWS.config.update({
-    accessKeyId: "AKIARDKAXXUNHMX3NSEA",
-    secretAccessKey: "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",
+    accessKeyId: "ASIA4ZBKUXL4NSHIM5P2",
+    secretAccessKey: "nEhl3/fqHok/MItB6m56FLILspS9qF22Qs2CV4ud",
     region: "us-east-1",
   });
 

@@ -460,7 +460,7 @@ Resources:
       Properties:
         Role: !GetAtt LambdaAdminRole.Arn
         Runtime: nodejs12.x
-        Handler: index.handler 
+        Handler: index.handler
         Code: 
           ZipFile: |
             exports.handler = async (event) => {
