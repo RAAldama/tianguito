@@ -321,6 +321,15 @@ Resources:
       DBInstanceClass: db.t3.micro
       DBName: TianguitoMarkets
       DBInstanceIdentifier: Tianguito-RDS
+      DBSecurityGroups:
+        - !Ref DBSecurityGroup
+        
+  DBSecurityGroup:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: All-Security-Group
+      DBSecurityGroupIngress:
+        - CIDRIP: 0.0.0.0/0
 
   DynamoDB:
     Type: AWS::DynamoDB::Table
