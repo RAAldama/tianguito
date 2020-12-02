@@ -1,0 +1,40 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "puesto de tianguito",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "TestIntent",
+                    "slots": [],
+                    "samples": [
+                        "opcion uno"
+                    ]
+                },
+                {
+                    "name": "TestIntentB",
+                    "slots": [],
+                    "samples": [
+                        "opcion dos"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
